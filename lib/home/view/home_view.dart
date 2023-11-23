@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:skeletons/skeletons.dart';
+import 'package:with_tft/login/bloc/login_bloc.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -11,6 +13,7 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
+    final loginBloc = BlocProvider.of<LoginBloc>(context);
     return Scaffold(
       appBar: AppBar(
         centerTitle: false,
@@ -20,41 +23,20 @@ class _HomeViewState extends State<HomeView> {
             padding: const EdgeInsets.only(right: 10),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(50.0),
-              child: SizedBox(
-                width: 48,
-                height: 48,
-                child: Image.network(
-                  'https://ddragon.leagueoflegends.com/cdn/13.23.1/img/profileicon/4568.png',
-                  fit: BoxFit.cover,
-                  errorBuilder: (context, error, stackTrace) {
-                    return SkeletonAvatar(
-                      style: SkeletonAvatarStyle(
-                        width: double.infinity,
-                        minHeight: MediaQuery.of(context).size.height / 8,
-                        maxHeight: MediaQuery.of(context).size.height / 3,
-                      ),
-                    );
-                  },
-                  loadingBuilder: (BuildContext context, Widget child,
-                      ImageChunkEvent? loadingProgress) {
-                    if (loadingProgress == null) {
-                      return child;
-                    }
-                    return SkeletonAvatar(
-                      style: SkeletonAvatarStyle(
-                        width: double.infinity,
-                        minHeight: MediaQuery.of(context).size.height / 8,
-                        maxHeight: MediaQuery.of(context).size.height / 3,
-                      ),
-                    );
-                  },
-                ),
+              child: Text(
+                loginBloc.state.user.name,
+                style: const TextStyle(
+                    fontSize: 18, overflow: TextOverflow.ellipsis),
               ),
             ),
           ),
         ],
       ),
-      body: Container(),
+      body: Column(
+        children: [
+          Container(),
+        ],
+      ),
     );
   }
 }

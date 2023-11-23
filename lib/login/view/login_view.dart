@@ -13,7 +13,8 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
-  TextEditingController tec = TextEditingController();
+  TextEditingController nickNameController = TextEditingController();
+  TextEditingController lineTagController = TextEditingController(text: 'KR1');
   @override
   Widget build(BuildContext context) {
     return BlocListener<LoginBloc, LoginState>(
@@ -65,10 +66,33 @@ class _LoginViewState extends State<LoginView> {
                   height: 60,
                 ),
                 TextField(
-                  controller: tec,
+                  controller: nickNameController,
                   decoration: const InputDecoration(
                     labelText: 'Riot ID',
                     hintText: '닉네임을 입력해주세요.',
+                    labelStyle: TextStyle(color: Colors.black),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                      borderSide: BorderSide(width: 1, color: Colors.black),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                      borderSide: BorderSide(width: 1, color: Colors.black),
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                    ),
+                  ),
+                  keyboardType: TextInputType.emailAddress,
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                TextField(
+                  controller: lineTagController,
+                  decoration: const InputDecoration(
+                    labelText: 'Line Tag',
+                    hintText: '라인 태그을 입력해주세요.',
                     labelStyle: TextStyle(color: Colors.black),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10.0)),
@@ -89,9 +113,9 @@ class _LoginViewState extends State<LoginView> {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    context
-                        .read<LoginBloc>()
-                        .add((RiotSummonerName(nickName: tec.text)));
+                    context.read<LoginBloc>().add((RiotSummonerName(
+                        nickName: nickNameController.text,
+                        lineTag: lineTagController.text)));
                   },
                   style: ButtonStyle(
                     backgroundColor:
@@ -110,7 +134,7 @@ class _LoginViewState extends State<LoginView> {
                     height: 60,
                     child: Center(
                       child: Text(
-                        '닉네임 조회',
+                        '로그인',
                         style: TextStyle(
                           fontWeight: FontWeight.bold, // 볼드체
                           fontSize: 16, // 크기 조정

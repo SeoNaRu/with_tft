@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:with_tft/login/bloc/login_event.dart';
 import 'package:with_tft/login/bloc/login_state.dart';
+import 'package:with_tft/login/model/tire_model.dart';
 import 'package:with_tft/login/model/user_model.dart';
 import 'package:with_tft/my/my_env.dart';
 import 'package:with_tft/repository/authentication_repository.dart';
@@ -19,15 +20,27 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   FutureOr<void> _onRiotSummonerName(RiotSummonerName event, emit) async {
     try {
       String encodedSummonerName = Uri.encodeComponent(event.nickName);
-
+      String encodedLineTag = Uri.encodeComponent(event.lineTag);
       dynamic response = await _authenticationRepository.passGet(MyEnv.ipRiot,
-          '/tft/summoner/v1/summoners/by-name/$encodedSummonerName?api_key=${MyEnv.riotKey}');
+          '/riot/account/v1/accounts/by-riot-id/$encodedSummonerName/$encodedLineTag?api_key=${MyEnv.riotKey}');
 
-      if (response['status'] != null &&
-          response['status']['status_code'] > 400) {
+      if (response['puuid'] == null) {
         emit(state.copyWith(status: AuthenticationStatus.unauthenticated));
       } else {
-        User user = User.fromMap(response);
+        String puuid = response['puuid'];
+        dynamic puuidResponse = await _authenticationRepository.passGet(
+            MyEnv.ipTft,
+            '/tft/summoner/v1/summoners/by-puuid/$puuid?api_key=${MyEnv.riotKey}');
+        String id = puuidResponse['id'];
+        dynamic tierResponse = await _authenticationRepository.passGet(
+            MyEnv.ipTft,
+            '/tft/league/v1/entries/by-summoner/$id?api_key=${MyEnv.riotKey}');
+        print('tierResponse:$tierResponse');
+        if (tierResponse.isNotEmpty) {
+          Tier tier = Tier.fromMap(tierResponse[0]);
+          emit(state.copyWith(tier: tier));
+        }
+        User user = User.fromMap(puuidResponse);
         emit(state.copyWith(user: user));
         emit(state.copyWith(status: AuthenticationStatus.authenticated));
       }

@@ -11,8 +11,10 @@ abstract class LoginEvent extends Equatable {
 
 class RiotSummonerName extends LoginEvent {
   final String nickName;
+  final String lineTag;
 
   const RiotSummonerName({
     required this.nickName,
+    required this.lineTag,
   });
 }
