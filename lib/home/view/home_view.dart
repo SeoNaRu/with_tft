@@ -2,59 +2,52 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:with_tft/home/bloc/home_bloc.dart';
 import 'package:with_tft/home/bloc/home_event.dart';
-import 'package:with_tft/home/bloc/home_state.dart'; // 이 부분을 추가해야 합니다.
-
+import 'package:with_tft/home/bloc/home_state.dart';
 import 'package:with_tft/home/view/category_view/find_team_view.dart';
 import 'package:with_tft/home/view/category_view/synergy_helper_view.dart';
-import 'package:with_tft/home/view/category_view/profile_view.dart'; // 프로필 뷰를 추가함
+import 'package:with_tft/home/view/category_view/profile_view.dart';
 import 'package:with_tft/home/widget/draggable_button.dart';
 import 'package:with_tft/login/bloc/login_bloc.dart';
 
-class HomeView extends StatefulWidget {
+class HomeView extends StatelessWidget {
   const HomeView({Key? key}) : super(key: key);
 
   @override
-  State<HomeView> createState() => _HomeViewState();
-}
-
-class _HomeViewState extends State<HomeView> {
-  String selectedCategory = '팀구하기';
-
-  @override
   Widget build(BuildContext context) {
-    final loginBloc = BlocProvider.of<LoginBloc>(context);
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: false,
-        title: Text('WITH TFT',
-            style: TextStyle(
+    return BlocBuilder<HomeBloc, HomeState>(
+      builder: (context, state) {
+        return Scaffold(
+          appBar: AppBar(
+            centerTitle: false,
+            title: Text(
+              'WITH TFT',
+              style: TextStyle(
                 fontWeight: FontWeight.bold,
                 color: Colors.black,
-                fontSize: 20)),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 15),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(50.0),
-              child: Text(
-                loginBloc.state.user.name,
-                style: const TextStyle(
-                    fontSize: 16,
-                    overflow: TextOverflow.ellipsis,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black),
+                fontSize: 20,
               ),
             ),
-          ),
-        ],
-      ),
-      body: Column(
-        children: [
-          Column(
-            children: [
-              SizedBox(
-                height: 10,
+            actions: [
+              Padding(
+                padding: const EdgeInsets.only(right: 15),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(50.0),
+                  child: Text(
+                    BlocProvider.of<LoginBloc>(context).state.user.name,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      overflow: TextOverflow.ellipsis,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
               ),
+            ],
+          ),
+          body: Column(
+            children: [
+              SizedBox(height: 10),
               Align(
                 alignment: Alignment.center,
                 child: Container(
@@ -73,53 +66,79 @@ class _HomeViewState extends State<HomeView> {
                     boxShadow: [
                       BoxShadow(
                         color: Colors.black.withOpacity(0.8),
-                        spreadRadius: 1, // 그림자 크기
-                        blurRadius: 0, // 블러
-                        offset: Offset(5, 6), // 그림자의 위치 (가로, 세로)
+                        spreadRadius: 1,
+                        blurRadius: 0,
+                        offset: Offset(5, 6),
                       ),
                     ],
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      buildCategoryButton('팀구하기',
-                          SelectedCategory(category: HomeCategory.findTeam)),
                       buildCategoryButton(
-                          '시너지',
-                          SelectedCategory(
-                              category: HomeCategory.synergyHelper)),
-                      buildCategoryButton('프로필',
-                          SelectedCategory(category: HomeCategory.profile)),
+                        context,
+                        '팀구하기',
+                        SelectedCategory(category: HomeCategory.findTeam),
+                        state.status,
+                      ),
+                      buildCategoryButton(
+                        context,
+                        '시너지',
+                        SelectedCategory(category: HomeCategory.synergyHelper),
+                        state.status,
+                      ),
+                      buildCategoryButton(
+                        context,
+                        '프로필',
+                        SelectedCategory(category: HomeCategory.profile),
+                        state.status,
+                      ),
                     ],
                   ),
                 ),
               ),
-              SizedBox(
-                height: 20,
-              )
+              SizedBox(height: 20),
+              // selectedCategory에 따라 다른 뷰를 보여줍니다.
+              if (state.status == HomeCategory.findTeam) const FindTeamView(),
+              if (state.status == HomeCategory.synergyHelper)
+                const SynergyHelperView(),
+              if (state.status == HomeCategory.profile) const MyProfileView(),
             ],
           ),
-          // selectedCategory에 따라 다른 뷰를 보여줍니다.
-          if (selectedCategory == '팀구하기') FindTeamView(),
-          if (selectedCategory == '시너지') SynergyHelperView(),
-          if (selectedCategory == '프로필') MyProfileView(),
-        ],
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton:
-          selectedCategory == '팀구하기' ? DraggableButton() : null,
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerDocked,
+          floatingActionButton:
+              state.status == HomeCategory.findTeam ? DraggableButton() : null,
+        );
+      },
     );
   }
 
-  Widget buildCategoryButton(String category, HomeEvent event) {
-    bool isSelected = selectedCategory == category;
+  Widget buildCategoryButton(
+    BuildContext context,
+    String category,
+    HomeEvent event,
+    HomeCategory currentStatus,
+  ) {
+    HomeCategory categoryEnum;
+    switch (category) {
+      case '팀구하기':
+        categoryEnum = HomeCategory.findTeam;
+        break;
+      case '시너지':
+        categoryEnum = HomeCategory.synergyHelper;
+        break;
+      case '프로필':
+        categoryEnum = HomeCategory.profile;
+        break;
+      default:
+        categoryEnum = HomeCategory.findTeam;
+    }
 
+    bool isSelected = categoryEnum == currentStatus;
     return GestureDetector(
       onTap: () {
-        setState(() {
-          selectedCategory = category;
-          context.read<HomeBloc>().add(event);
-        });
+        context.read<HomeBloc>().add(event);
       },
       child: Container(
         padding: EdgeInsets.all(8.0),

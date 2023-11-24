@@ -9,8 +9,6 @@ Widget buildCategoryButton(String category, HomeEvent event,
 
   return GestureDetector(
     onTap: () {
-      print("Sending event: $event");
-
       context.read<HomeBloc>().add(event);
     },
     child: Container(
