@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:with_tft/home/provider/home_page.dart';
 import 'package:with_tft/home/view/home_view.dart';
 import 'package:with_tft/login/bloc/login_bloc.dart';
 import 'package:with_tft/login/bloc/login_event.dart';
@@ -56,8 +57,8 @@ class _LoginViewState extends State<LoginView> {
                     Text(
                       'TFT 동료 찾기 - 함께 전략전을 즐기세요!',
                       style: TextStyle(
-                        fontWeight: FontWeight.bold, // 볼드체
-                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
                       ),
                     ),
                   ],

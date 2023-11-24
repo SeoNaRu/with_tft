@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:with_tft/app/app_view.dart';
+import 'package:with_tft/home/bloc/home_bloc.dart';
 import 'package:with_tft/login/bloc/login_bloc.dart';
 
 class AppPage extends StatefulWidget {
@@ -19,6 +20,9 @@ class _AppPageState extends State<AppPage> {
       providers: [
         BlocProvider(
           create: (context) => LoginBloc(),
+        ),
+        BlocProvider(
+          create: (context) => HomeBloc(),
         ),
         // BlocProvider(
         //   create: (context) => TestBloc(),

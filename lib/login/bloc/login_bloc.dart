@@ -27,21 +27,26 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       if (response['puuid'] == null) {
         emit(state.copyWith(status: AuthenticationStatus.unauthenticated));
       } else {
+        // 유저 기본 정보 받기
         String puuid = response['puuid'];
         dynamic puuidResponse = await _authenticationRepository.passGet(
             MyEnv.ipTft,
             '/tft/summoner/v1/summoners/by-puuid/$puuid?api_key=${MyEnv.riotKey}');
+
+        User user = User.fromMap(puuidResponse);
+        emit(state.copyWith(user: user));
+        //tier 정보 받기
         String id = puuidResponse['id'];
         dynamic tierResponse = await _authenticationRepository.passGet(
             MyEnv.ipTft,
             '/tft/league/v1/entries/by-summoner/$id?api_key=${MyEnv.riotKey}');
         print('tierResponse:$tierResponse');
+
         if (tierResponse.isNotEmpty) {
           Tier tier = Tier.fromMap(tierResponse[0]);
           emit(state.copyWith(tier: tier));
         }
-        User user = User.fromMap(puuidResponse);
-        emit(state.copyWith(user: user));
+
         emit(state.copyWith(status: AuthenticationStatus.authenticated));
       }
     } catch (e) {
