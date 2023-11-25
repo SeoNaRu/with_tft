@@ -1,16 +1,18 @@
 # with_tft
 
-A new Flutter project.
+I'm making an app that helps me enjoy TFT
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+1.add the .env file
+/.env
 
-A few resources to get you started if this is your first Flutter project:
+```
+IP='Working on server code'
+IP_RIOT=asia.api.riotgames.com
+IP_TFT=kr.api.riotgames.com
+RIOT_KEY='Put the Riot key on you'
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+2. flutter run 
