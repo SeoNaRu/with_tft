@@ -29,12 +29,16 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       } else {
         // 유저 기본 정보 받기
         String puuid = response['puuid'];
+        String lineTag = response['tagLine'];
         dynamic puuidResponse = await _authenticationRepository.passGet(
             MyEnv.ipTft,
             '/tft/summoner/v1/summoners/by-puuid/$puuid?api_key=${MyEnv.riotKey}');
 
-        User user = User.fromMap(puuidResponse);
+        // User user = User.fromMap(puuidResponse);
+        User user = User.fromMap(puuidResponse).copyWith(lingTag: lineTag);
+
         emit(state.copyWith(user: user));
+        print('유저 정보 잘 받아오고 있니? ${state.user}');
         //tier 정보 받기
         String id = puuidResponse['id'];
         dynamic tierResponse = await _authenticationRepository.passGet(

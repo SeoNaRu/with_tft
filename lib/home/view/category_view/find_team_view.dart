@@ -10,11 +10,8 @@ class FindTeamView extends StatefulWidget {
 }
 
 class _FindTeamViewState extends State<FindTeamView> {
-  String selectedCategory = '팀구하기';
-
   @override
   Widget build(BuildContext context) {
-    final loginBloc = BlocProvider.of<LoginBloc>(context);
     return Expanded(
       child: ListView.builder(
         itemCount: 5,

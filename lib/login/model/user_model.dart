@@ -8,6 +8,7 @@ class User extends Equatable {
   final int profileIconId;
   final int revisionDate;
   final int summonerLevel;
+  final String lingTag; // 새로운 필드 추가
 
   static const empty = User(
     id: '',
@@ -17,6 +18,7 @@ class User extends Equatable {
     profileIconId: 0,
     revisionDate: 0,
     summonerLevel: 0,
+    lingTag: '', // 기본값 설정
   );
 
   const User({
@@ -27,7 +29,7 @@ class User extends Equatable {
     required this.profileIconId,
     required this.revisionDate,
     required this.summonerLevel,
-    // required this.createdAt,
+    this.lingTag = '', // 기본값 설정
   });
 
   @override
@@ -39,11 +41,12 @@ class User extends Equatable {
         profileIconId,
         revisionDate,
         summonerLevel,
+        lingTag,
       ];
 
   @override
   String toString() {
-    return 'User{id: $id, accountId: $accountId,puuid:$puuid, name: $name, profileIconId: $profileIconId, revisionDate: $revisionDate,summonerLevel: $summonerLevel,  }';
+    return 'User{id: $id, accountId: $accountId, puuid:$puuid, name: $name, profileIconId: $profileIconId, revisionDate: $revisionDate, summonerLevel: $summonerLevel, lingTag: $lingTag }';
   }
 
   Map<String, dynamic> toMap() {
@@ -55,6 +58,7 @@ class User extends Equatable {
       'profileIconId': profileIconId,
       'revisionDate': revisionDate,
       'summonerLevel': summonerLevel,
+      'lingTag': lingTag,
     };
   }
 
@@ -65,10 +69,9 @@ class User extends Equatable {
       puuid: map['puuid'] ?? "",
       name: map['name'] ?? "",
       profileIconId: map['profileIconId'] ?? "" as int,
-
       revisionDate: map['revisionDate'] ?? "" as int,
       summonerLevel: map['summonerLevel'] ?? "" as int,
-      // createdAt: map['createdAt'] ?? "" as int,
+      lingTag: map['lingTag'] ?? "",
     );
   }
 
@@ -80,6 +83,7 @@ class User extends Equatable {
     int? profileIconId,
     int? revisionDate,
     int? summonerLevel,
+    String? lingTag,
   }) {
     return User(
       id: id ?? this.id,
@@ -89,6 +93,7 @@ class User extends Equatable {
       profileIconId: profileIconId ?? this.profileIconId,
       revisionDate: revisionDate ?? this.revisionDate,
       summonerLevel: summonerLevel ?? this.summonerLevel,
+      lingTag: lingTag ?? this.lingTag,
     );
   }
 }

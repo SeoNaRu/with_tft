@@ -6,6 +6,8 @@ import 'package:with_tft/home/bloc/home_state.dart';
 import 'package:with_tft/home/view/category_view/find_team_view.dart';
 import 'package:with_tft/home/view/category_view/synergy_helper_view.dart';
 import 'package:with_tft/home/view/category_view/profile_view.dart';
+import 'package:with_tft/home/view/category_view/writing_view.dart';
+import 'package:with_tft/home/widget/category_button.dart';
 import 'package:with_tft/home/widget/draggable_button.dart';
 import 'package:with_tft/login/bloc/login_bloc.dart';
 
@@ -72,29 +74,48 @@ class HomeView extends StatelessWidget {
                       ),
                     ],
                   ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      buildCategoryButton(
-                        context,
-                        '팀구하기',
-                        SelectedCategory(category: HomeCategory.findTeam),
-                        state.status,
-                      ),
-                      buildCategoryButton(
-                        context,
-                        '시너지',
-                        SelectedCategory(category: HomeCategory.synergyHelper),
-                        state.status,
-                      ),
-                      buildCategoryButton(
-                        context,
-                        '프로필',
-                        SelectedCategory(category: HomeCategory.profile),
-                        state.status,
-                      ),
-                    ],
-                  ),
+                  child: state.status == HomeCategory.wriTing
+                      ? InkWell(
+                          onTap: () {
+                            context.read<HomeBloc>().add(const SelectedCategory(
+                                category: HomeCategory.findTeam));
+                          },
+                          child: Center(
+                              child: Text(
+                            '글쓰기 닫기',
+                            style: const TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
+                          )),
+                        )
+                      : Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            categoryButton(
+                              context,
+                              '동료찾기',
+                              const SelectedCategory(
+                                  category: HomeCategory.findTeam),
+                              state.status,
+                            ),
+                            categoryButton(
+                              context,
+                              '시너지',
+                              const SelectedCategory(
+                                  category: HomeCategory.synergyHelper),
+                              state.status,
+                            ),
+                            categoryButton(
+                              context,
+                              '프로필',
+                              const SelectedCategory(
+                                  category: HomeCategory.profile),
+                              state.status,
+                            ),
+                          ],
+                        ),
                 ),
               ),
               SizedBox(height: 20),
@@ -103,6 +124,7 @@ class HomeView extends StatelessWidget {
               if (state.status == HomeCategory.synergyHelper)
                 const SynergyHelperView(),
               if (state.status == HomeCategory.profile) const MyProfileView(),
+              if (state.status == HomeCategory.wriTing) const WritingView(),
             ],
           ),
           floatingActionButtonLocation:
@@ -111,51 +133,6 @@ class HomeView extends StatelessWidget {
               state.status == HomeCategory.findTeam ? DraggableButton() : null,
         );
       },
-    );
-  }
-
-  Widget buildCategoryButton(
-    BuildContext context,
-    String category,
-    HomeEvent event,
-    HomeCategory currentStatus,
-  ) {
-    HomeCategory categoryEnum;
-    switch (category) {
-      case '팀구하기':
-        categoryEnum = HomeCategory.findTeam;
-        break;
-      case '시너지':
-        categoryEnum = HomeCategory.synergyHelper;
-        break;
-      case '프로필':
-        categoryEnum = HomeCategory.profile;
-        break;
-      default:
-        categoryEnum = HomeCategory.findTeam;
-    }
-
-    bool isSelected = categoryEnum == currentStatus;
-    return GestureDetector(
-      onTap: () {
-        context.read<HomeBloc>().add(event);
-      },
-      child: Container(
-        padding: EdgeInsets.all(8.0),
-        decoration: BoxDecoration(
-          color: isSelected ? Colors.black : Colors.transparent,
-          borderRadius: BorderRadius.all(
-            Radius.circular(15.0),
-          ),
-        ),
-        child: Text(
-          category,
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: isSelected ? Colors.white : Colors.black,
-          ),
-        ),
-      ),
     );
   }
 }
