@@ -4,39 +4,26 @@ import 'package:with_tft/home/bloc/home_bloc.dart';
 import 'package:with_tft/home/bloc/home_event.dart';
 import 'package:with_tft/home/bloc/home_state.dart';
 
-Widget gameTypeButton(
-  BuildContext context,
-  String category,
-  HomeEvent event,
-  GameTypes gameTypesStatus,
-  PersonnelCheck personnelEnum,
-) {
-  GameTypes gameTypesEnum;
+Widget ageCategoryButton(BuildContext context, String category, HomeEvent event,
+    AgeCategory ageCategory) {
+  AgeCategory ageCategoryEnum;
   switch (category) {
-    case '일반':
-      gameTypesEnum = GameTypes.normal;
+    case '성인':
+      ageCategoryEnum = AgeCategory.minor;
       break;
-    case '랭크':
-      gameTypesEnum = GameTypes.ranked;
+    case '청소년':
+      ageCategoryEnum = AgeCategory.adult;
       break;
-    case '초고속':
-      gameTypesEnum = GameTypes.turbo;
-      break;
-    case '더블업':
-      gameTypesEnum = GameTypes.doubleUp;
+    case '비밀':
+      ageCategoryEnum = AgeCategory.secret;
       break;
     default:
-      gameTypesEnum = GameTypes.normal;
+      ageCategoryEnum = AgeCategory.secret;
   }
-  bool ispersonnelCheck = personnelEnum != PersonnelCheck.one &&
-      personnelEnum != PersonnelCheck.two;
-  bool isSelected = gameTypesEnum == gameTypesStatus;
+
+  bool isSelected = ageCategoryEnum == ageCategory;
   return GestureDetector(
     onTap: () {
-      if (category == '랭크' && ispersonnelCheck) {
-        context.read<HomeBloc>().add(const SelectedPersonnelCheck(
-            personnelCheck: PersonnelCheck.one, stringPersonnelStatus: "1"));
-      }
       context.read<HomeBloc>().add(event);
     },
     child: Container(

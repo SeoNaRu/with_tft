@@ -1,81 +1,168 @@
 import 'package:equatable/equatable.dart';
-import 'package:with_tft/login/model/tire_model.dart';
-import 'package:with_tft/login/model/user_model.dart';
+import 'package:with_tft/home/model/article_model.dart';
 
-enum HomeCategory { findTeam, synergyHelper, profile, wriTing }
+enum HomeCategory { findTeam, synergyHelper, profile, writing }
 
-enum GameTypes { noaml, ranked, turbo, doubleUp }
+enum GameTypes { normal, ranked, turbo, doubleUp }
 
-enum VocieCheck { on, off }
+enum VoiceCheck { on, off }
 
 enum PersonnelCheck { one, two, three, four, five, six, seven }
+
+enum AgeCategory { adult, minor, secret }
+
+enum Gender { male, female, secret }
+
+enum MyVoiceCheck { on, off }
+
+enum PlayStyle { fun, faceKeeping, reroll, levelUp, doubleUp }
+
+enum DuoType {
+  maleSeeking,
+  femaleSeeking,
+  gamingParty,
+  mentorSeeking,
+  studentSeeking,
+  teachable,
+  notTeachable
+}
+
+enum PlayTime { dawn, morning, dayEvening, night, weekday, weekend, random }
+
+enum Interest { skillStudy, casualChat, streamer, tournamentWatch }
 
 class HomeState extends Equatable {
   final HomeCategory status;
   final GameTypes gameTypesStatus;
   final String stringGameTypesStatus;
-  final VocieCheck vocieStatus;
-  final String stringVocieStatus;
+  final VoiceCheck voiceStatus;
+  final String stringVoiceStatus;
   final PersonnelCheck personnelStatus;
   final String stringPersonnelStatus;
+  final AgeCategory ageCategory;
+  final String stringAgeCategory;
+  final Gender gender;
+  final String stringGender;
+  final MyVoiceCheck myVoiceCheck;
+  final String stringMyVoiceCheck;
+  final PlayStyle playStyle;
+  final DuoType duoType;
+  final PlayTime playTime;
+  final Interest interest;
+  final List<ArticleModel> articles;
 
   const HomeState({
     required this.status,
     required this.gameTypesStatus,
-    required this.vocieStatus,
+    required this.voiceStatus,
     required this.personnelStatus,
     required this.stringGameTypesStatus,
-    required this.stringVocieStatus,
+    required this.stringVoiceStatus,
     required this.stringPersonnelStatus,
+    required this.ageCategory,
+    required this.stringAgeCategory,
+    required this.gender,
+    required this.stringGender,
+    required this.myVoiceCheck,
+    required this.stringMyVoiceCheck,
+    required this.playStyle,
+    required this.duoType,
+    required this.playTime,
+    required this.interest,
+    required this.articles,
   });
 
   factory HomeState.init() {
     return const HomeState(
       status: HomeCategory.findTeam,
-      gameTypesStatus: GameTypes.noaml,
-      vocieStatus: VocieCheck.off,
+      gameTypesStatus: GameTypes.normal,
+      voiceStatus: VoiceCheck.off,
       personnelStatus: PersonnelCheck.one,
       stringGameTypesStatus: '일반',
-      stringVocieStatus: 'OFF',
+      stringVoiceStatus: 'OFF',
       stringPersonnelStatus: '1',
+      ageCategory: AgeCategory.secret,
+      stringAgeCategory: '비밀',
+      gender: Gender.secret,
+      stringGender: '비밀',
+      myVoiceCheck: MyVoiceCheck.off,
+      stringMyVoiceCheck: 'OFF',
+      playStyle: PlayStyle.fun,
+      duoType: DuoType.maleSeeking,
+      playTime: PlayTime.random,
+      interest: Interest.skillStudy,
+      articles: [],
     );
   }
 
   @override
   String toString() {
-    return 'HomeState{status: $status gameTypesStatus:$gameTypesStatus vocieStatus:$vocieStatus personnelStatus:$personnelStatus stringGameTypesStatus:$stringGameTypesStatus stringVocieStatus:$stringVocieStatus stringPersonnelStatus:$stringPersonnelStatus}';
+    return 'HomeState{status: $status gameTypesStatus:$gameTypesStatus voiceStatus:$voiceStatus personnelStatus:$personnelStatus stringGameTypesStatus:$stringGameTypesStatus stringVoiceStatus:$stringVoiceStatus stringPersonnelStatus:$stringPersonnelStatus ageCategory:$ageCategory gender:$gender playStyle:$playStyle duoType:$duoType playTime:$playTime interest:$interest articles:$articles ageCategory:$ageCategory}';
   }
 
   @override
   List<Object?> get props => [
         status,
         gameTypesStatus,
-        vocieStatus,
+        voiceStatus,
         personnelStatus,
         stringGameTypesStatus,
-        stringVocieStatus,
+        stringVoiceStatus,
         stringPersonnelStatus,
+        ageCategory,
+        stringAgeCategory,
+        gender,
+        stringGender,
+        myVoiceCheck,
+        stringMyVoiceCheck,
+        playStyle,
+        duoType,
+        playTime,
+        interest,
+        articles,
       ];
 
   HomeState copyWith({
     HomeCategory? status,
     GameTypes? gameTypesStatus,
-    VocieCheck? vocieStatus,
+    VoiceCheck? voiceStatus,
     PersonnelCheck? personnelStatus,
     String? stringGameTypesStatus,
-    String? stringVocieStatus,
+    String? stringVoiceStatus,
     String? stringPersonnelStatus,
+    AgeCategory? ageCategory,
+    String? stringAgeCategory,
+    Gender? gender,
+    String? stringGender,
+    MyVoiceCheck? myVoiceCheck,
+    String? stringMyVoiceCheck,
+    PlayStyle? playStyle,
+    DuoType? duoType,
+    PlayTime? playTime,
+    Interest? interest,
+    List<ArticleModel>? articles,
   }) {
     return HomeState(
       status: status ?? this.status,
       gameTypesStatus: gameTypesStatus ?? this.gameTypesStatus,
-      vocieStatus: vocieStatus ?? this.vocieStatus,
+      voiceStatus: voiceStatus ?? this.voiceStatus,
       personnelStatus: personnelStatus ?? this.personnelStatus,
       stringGameTypesStatus:
           stringGameTypesStatus ?? this.stringGameTypesStatus,
-      stringVocieStatus: stringVocieStatus ?? this.stringVocieStatus,
+      stringVoiceStatus: stringVoiceStatus ?? this.stringVoiceStatus,
       stringPersonnelStatus:
           stringPersonnelStatus ?? this.stringPersonnelStatus,
+      ageCategory: ageCategory ?? this.ageCategory,
+      stringAgeCategory: stringAgeCategory ?? this.stringAgeCategory,
+      gender: gender ?? this.gender,
+      stringGender: stringGender ?? this.stringGender,
+      myVoiceCheck: myVoiceCheck ?? this.myVoiceCheck,
+      stringMyVoiceCheck: stringMyVoiceCheck ?? this.stringMyVoiceCheck,
+      playStyle: playStyle ?? this.playStyle,
+      duoType: duoType ?? this.duoType,
+      playTime: playTime ?? this.playTime,
+      interest: interest ?? this.interest,
+      articles: articles ?? this.articles,
     );
   }
 }

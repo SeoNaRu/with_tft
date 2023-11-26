@@ -17,15 +17,15 @@ class _AppViewState extends State<AppView> {
         scaffoldBackgroundColor: Colors.white, // 흰색
         textTheme: const TextTheme(
           bodyLarge: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 16,
-            color: Colors.black,
-          ),
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+              color: Colors.black,
+              overflow: TextOverflow.ellipsis),
           bodyMedium: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 14,
-            color: Colors.black,
-          ),
+              fontWeight: FontWeight.bold,
+              fontSize: 14,
+              color: Colors.black,
+              overflow: TextOverflow.ellipsis),
         ),
       ),
       home: const LoginView(),

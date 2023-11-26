@@ -11,9 +11,14 @@ import 'package:with_tft/home/widget/category_button.dart';
 import 'package:with_tft/home/widget/draggable_button.dart';
 import 'package:with_tft/login/bloc/login_bloc.dart';
 
-class HomeView extends StatelessWidget {
-  const HomeView({Key? key}) : super(key: key);
+class HomeView extends StatefulWidget {
+  const HomeView({super.key});
 
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(
@@ -74,7 +79,7 @@ class HomeView extends StatelessWidget {
                       ),
                     ],
                   ),
-                  child: state.status == HomeCategory.wriTing
+                  child: state.status == HomeCategory.writing
                       ? InkWell(
                           onTap: () {
                             context.read<HomeBloc>().add(const SelectedCategory(
@@ -119,12 +124,11 @@ class HomeView extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 20),
-              // selectedCategory에 따라 다른 뷰를 보여줍니다.
               if (state.status == HomeCategory.findTeam) const FindTeamView(),
               if (state.status == HomeCategory.synergyHelper)
                 const SynergyHelperView(),
               if (state.status == HomeCategory.profile) const MyProfileView(),
-              if (state.status == HomeCategory.wriTing) const WritingView(),
+              if (state.status == HomeCategory.writing) const WritingView(),
             ],
           ),
           floatingActionButtonLocation:

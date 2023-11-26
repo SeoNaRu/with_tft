@@ -5,17 +5,17 @@ import 'package:with_tft/home/bloc/home_event.dart';
 import 'package:with_tft/home/bloc/home_state.dart';
 
 Widget voiceCheckButton(BuildContext context, String category, HomeEvent event,
-    VocieCheck vocieStatus) {
-  VocieCheck vocieCheckEnum;
+    VoiceCheck vocieStatus) {
+  VoiceCheck vocieCheckEnum;
   switch (category) {
     case 'ON':
-      vocieCheckEnum = VocieCheck.on;
+      vocieCheckEnum = VoiceCheck.on;
       break;
     case 'OFF':
-      vocieCheckEnum = VocieCheck.off;
+      vocieCheckEnum = VoiceCheck.off;
       break;
     default:
-      vocieCheckEnum = VocieCheck.off;
+      vocieCheckEnum = VoiceCheck.off;
   }
 
   bool isSelected = vocieCheckEnum == vocieStatus;

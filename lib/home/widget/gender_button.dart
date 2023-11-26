@@ -4,39 +4,26 @@ import 'package:with_tft/home/bloc/home_bloc.dart';
 import 'package:with_tft/home/bloc/home_event.dart';
 import 'package:with_tft/home/bloc/home_state.dart';
 
-Widget gameTypeButton(
-  BuildContext context,
-  String category,
-  HomeEvent event,
-  GameTypes gameTypesStatus,
-  PersonnelCheck personnelEnum,
-) {
-  GameTypes gameTypesEnum;
+Widget genderButton(
+    BuildContext context, String category, HomeEvent event, Gender gender) {
+  Gender genderEnum;
   switch (category) {
-    case '일반':
-      gameTypesEnum = GameTypes.normal;
+    case '남성':
+      genderEnum = Gender.male;
       break;
-    case '랭크':
-      gameTypesEnum = GameTypes.ranked;
+    case '여성':
+      genderEnum = Gender.female;
       break;
-    case '초고속':
-      gameTypesEnum = GameTypes.turbo;
-      break;
-    case '더블업':
-      gameTypesEnum = GameTypes.doubleUp;
+    case '비밀':
+      genderEnum = Gender.secret;
       break;
     default:
-      gameTypesEnum = GameTypes.normal;
+      genderEnum = Gender.secret;
   }
-  bool ispersonnelCheck = personnelEnum != PersonnelCheck.one &&
-      personnelEnum != PersonnelCheck.two;
-  bool isSelected = gameTypesEnum == gameTypesStatus;
+
+  bool isSelected = genderEnum == gender;
   return GestureDetector(
     onTap: () {
-      if (category == '랭크' && ispersonnelCheck) {
-        context.read<HomeBloc>().add(const SelectedPersonnelCheck(
-            personnelCheck: PersonnelCheck.one, stringPersonnelStatus: "1"));
-      }
       context.read<HomeBloc>().add(event);
     },
     child: Container(

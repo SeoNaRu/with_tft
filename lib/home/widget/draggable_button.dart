@@ -41,7 +41,7 @@ class _DraggableButtonState extends State<DraggableButton> {
         onDragEnd: (details) {
           context
               .read<HomeBloc>()
-              .add(const SelectedCategory(category: HomeCategory.wriTing));
+              .add(const SelectedCategory(category: HomeCategory.writing));
         },
         child: Container(
           width: 55.0,

@@ -23,7 +23,7 @@ class _LoginViewState extends State<LoginView> {
         if (state.status == AuthenticationStatus.authenticated) {
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(
-              builder: (context) => const HomeView(), // 다음 화면으로 이동
+              builder: (context) => const HomePage(), // 다음 화면으로 이동
             ),
           );
         } else if (state.status == AuthenticationStatus.unauthenticated) {

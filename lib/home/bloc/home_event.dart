@@ -29,12 +29,12 @@ class SelectedGameType extends HomeEvent {
 }
 
 class SelectedVocieCheck extends HomeEvent {
-  final VocieCheck vocieCheck;
-  final String stringVocieStatus;
+  final VoiceCheck voiceCheck;
+  final String stringVoiceStatus;
 
   const SelectedVocieCheck({
-    required this.vocieCheck,
-    required this.stringVocieStatus,
+    required this.voiceCheck,
+    required this.stringVoiceStatus,
   });
 }
 
@@ -57,5 +57,39 @@ class PostWritingBoard extends HomeEvent {
     required this.nickName,
     required this.lineTag,
     required this.tier,
+  });
+}
+
+class GetArticleList extends HomeEvent {}
+
+//profile
+
+class SelectedAgeCategory extends HomeEvent {
+  final AgeCategory ageCategory;
+  final String stringAgeCategory;
+
+  const SelectedAgeCategory({
+    required this.ageCategory,
+    required this.stringAgeCategory,
+  });
+}
+
+class SelectedGender extends HomeEvent {
+  final Gender gender;
+  final String stringGender;
+
+  const SelectedGender({
+    required this.gender,
+    required this.stringGender,
+  });
+}
+
+class SelectedMyVocieCheck extends HomeEvent {
+  final MyVoiceCheck myVoiceCheck;
+  final String stringMyVoiceCheck;
+
+  const SelectedMyVocieCheck({
+    required this.myVoiceCheck,
+    required this.stringMyVoiceCheck,
   });
 }

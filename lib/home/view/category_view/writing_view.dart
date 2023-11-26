@@ -85,7 +85,7 @@ class _WritingViewState extends State<WritingView> {
                               context,
                               '일반',
                               const SelectedGameType(
-                                  gameTypesCategory: GameTypes.noaml,
+                                  gameTypesCategory: GameTypes.normal,
                                   stringGameTypesStatus: '일반'),
                               state.gameTypesStatus,
                               state.personnelStatus),
@@ -164,18 +164,18 @@ class _WritingViewState extends State<WritingView> {
                               context,
                               'ON',
                               const SelectedVocieCheck(
-                                  vocieCheck: VocieCheck.on,
-                                  stringVocieStatus: "ON"),
-                              state.vocieStatus),
+                                  voiceCheck: VoiceCheck.on,
+                                  stringVoiceStatus: "ON"),
+                              state.voiceStatus),
                         ),
                         Expanded(
                           child: voiceCheckButton(
                               context,
                               'OFF',
                               const SelectedVocieCheck(
-                                  vocieCheck: VocieCheck.off,
-                                  stringVocieStatus: "OFF"),
-                              state.vocieStatus),
+                                  voiceCheck: VoiceCheck.off,
+                                  stringVoiceStatus: "OFF"),
+                              state.voiceStatus),
                         ),
                       ],
                     ),
