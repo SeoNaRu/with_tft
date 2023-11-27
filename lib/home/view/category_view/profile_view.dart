@@ -6,6 +6,7 @@ import 'package:with_tft/home/bloc/home_state.dart';
 import 'package:with_tft/home/widget/age_category_button.dart';
 import 'package:with_tft/home/widget/gender_button.dart';
 import 'package:with_tft/home/widget/my_voice_check_button.dart';
+import 'package:with_tft/home/widget/play_style_button.dart';
 import 'package:with_tft/login/bloc/login_bloc.dart';
 
 class MyProfileView extends StatefulWidget {
@@ -177,6 +178,9 @@ class _MyProfileViewState extends State<MyProfileView> {
                         ),
                       ],
                     ),
+                    SizedBox(
+                      height: 10,
+                    ),
                     Align(
                       alignment: Alignment.center,
                       child: Container(
@@ -204,6 +208,174 @@ class _MyProfileViewState extends State<MyProfileView> {
                     ),
                     SizedBox(
                       height: 6,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: myVoiceCheckButton(
+                              context,
+                              'ON',
+                              const SelectedMyVocieCheck(
+                                  myVoiceCheck: MyVoiceCheck.on,
+                                  stringMyVoiceCheck: "ON"),
+                              state.myVoiceCheck),
+                        ),
+                        Expanded(
+                          child: myVoiceCheckButton(
+                              context,
+                              'OFF',
+                              const SelectedMyVocieCheck(
+                                  myVoiceCheck: MyVoiceCheck.off,
+                                  stringMyVoiceCheck: "OFF"),
+                              state.myVoiceCheck),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Align(
+                      alignment: Alignment.center,
+                      child: Container(
+                          width: double.infinity - 4,
+                          height: 50.0,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            border: Border.all(
+                              color: Colors.black,
+                              width: 2.0,
+                            ),
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(20.0),
+                            ),
+                          ),
+                          child: Center(
+                              child: Text(
+                            '플레이',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                              fontSize: 20,
+                            ),
+                          ))),
+                    ),
+                    SizedBox(
+                      height: 6,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: playStyleButton(
+                              context,
+                              '즐겜',
+                              const SelectedPlayStyle(
+                                  playStyle: PlayStyle.fun,
+                                  stringPlayStyle: "즐겜"),
+                              state.playStyle),
+                        ),
+                        Expanded(
+                          child: playStyleButton(
+                              context,
+                              '빡겜',
+                              const SelectedPlayStyle(
+                                  playStyle: PlayStyle.faceKeeping,
+                                  stringPlayStyle: "빡겜"),
+                              state.playStyle),
+                        ),
+                        Expanded(
+                          child: playStyleButton(
+                              context,
+                              '리롤',
+                              const SelectedPlayStyle(
+                                  playStyle: PlayStyle.reroll,
+                                  stringPlayStyle: "리롤"),
+                              state.playStyle),
+                        ),
+                        Expanded(
+                          child: playStyleButton(
+                              context,
+                              '렙업',
+                              const SelectedPlayStyle(
+                                  playStyle: PlayStyle.levelUp,
+                                  stringPlayStyle: "렙업"),
+                              state.playStyle),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Align(
+                      alignment: Alignment.center,
+                      child: Container(
+                          width: double.infinity - 4,
+                          height: 50.0,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            border: Border.all(
+                              color: Colors.black,
+                              width: 2.0,
+                            ),
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(20.0),
+                            ),
+                          ),
+                          child: Center(
+                              child: Text(
+                            '음성',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                              fontSize: 20,
+                            ),
+                          ))),
+                    ),
+                    SizedBox(
+                      height: 6,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: myVoiceCheckButton(
+                              context,
+                              'ON',
+                              const SelectedMyVocieCheck(
+                                  myVoiceCheck: MyVoiceCheck.on,
+                                  stringMyVoiceCheck: "ON"),
+                              state.myVoiceCheck),
+                        ),
+                        Expanded(
+                          child: myVoiceCheckButton(
+                              context,
+                              'OFF',
+                              const SelectedMyVocieCheck(
+                                  myVoiceCheck: MyVoiceCheck.off,
+                                  stringMyVoiceCheck: "OFF"),
+                              state.myVoiceCheck),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: myVoiceCheckButton(
+                              context,
+                              'ON',
+                              const SelectedMyVocieCheck(
+                                  myVoiceCheck: MyVoiceCheck.on,
+                                  stringMyVoiceCheck: "ON"),
+                              state.myVoiceCheck),
+                        ),
+                        Expanded(
+                          child: myVoiceCheckButton(
+                              context,
+                              'OFF',
+                              const SelectedMyVocieCheck(
+                                  myVoiceCheck: MyVoiceCheck.off,
+                                  stringMyVoiceCheck: "OFF"),
+                              state.myVoiceCheck),
+                        ),
+                      ],
                     ),
                     Row(
                       children: [

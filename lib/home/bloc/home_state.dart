@@ -15,16 +15,15 @@ enum Gender { male, female, secret }
 
 enum MyVoiceCheck { on, off }
 
-enum PlayStyle { fun, faceKeeping, reroll, levelUp, doubleUp }
+enum PlayStyle { fun, faceKeeping, reroll, levelUp }
 
 enum DuoType {
+  rankDuo,
   maleSeeking,
   femaleSeeking,
   gamingParty,
   mentorSeeking,
   studentSeeking,
-  teachable,
-  notTeachable
 }
 
 enum PlayTime { dawn, morning, dayEvening, night, weekday, weekend, random }
@@ -46,7 +45,9 @@ class HomeState extends Equatable {
   final MyVoiceCheck myVoiceCheck;
   final String stringMyVoiceCheck;
   final PlayStyle playStyle;
+  final String stringPlayStyle;
   final DuoType duoType;
+  final String stringDuoType;
   final PlayTime playTime;
   final Interest interest;
   final List<ArticleModel> articles;
@@ -66,7 +67,9 @@ class HomeState extends Equatable {
     required this.myVoiceCheck,
     required this.stringMyVoiceCheck,
     required this.playStyle,
+    required this.stringPlayStyle,
     required this.duoType,
+    required this.stringDuoType,
     required this.playTime,
     required this.interest,
     required this.articles,
@@ -88,7 +91,9 @@ class HomeState extends Equatable {
       myVoiceCheck: MyVoiceCheck.off,
       stringMyVoiceCheck: 'OFF',
       playStyle: PlayStyle.fun,
-      duoType: DuoType.maleSeeking,
+      stringPlayStyle: '즐겜',
+      duoType: DuoType.gamingParty,
+      stringDuoType: '일반 파티',
       playTime: PlayTime.random,
       interest: Interest.skillStudy,
       articles: [],
@@ -116,7 +121,9 @@ class HomeState extends Equatable {
         myVoiceCheck,
         stringMyVoiceCheck,
         playStyle,
+        stringPlayStyle,
         duoType,
+        stringDuoType,
         playTime,
         interest,
         articles,
@@ -137,7 +144,9 @@ class HomeState extends Equatable {
     MyVoiceCheck? myVoiceCheck,
     String? stringMyVoiceCheck,
     PlayStyle? playStyle,
+    String? stringPlayStyle,
     DuoType? duoType,
+    String? stringDuoType,
     PlayTime? playTime,
     Interest? interest,
     List<ArticleModel>? articles,
@@ -159,7 +168,9 @@ class HomeState extends Equatable {
       myVoiceCheck: myVoiceCheck ?? this.myVoiceCheck,
       stringMyVoiceCheck: stringMyVoiceCheck ?? this.stringMyVoiceCheck,
       playStyle: playStyle ?? this.playStyle,
+      stringPlayStyle: stringPlayStyle ?? this.stringPlayStyle,
       duoType: duoType ?? this.duoType,
+      stringDuoType: stringDuoType ?? this.stringDuoType,
       playTime: playTime ?? this.playTime,
       interest: interest ?? this.interest,
       articles: articles ?? this.articles,

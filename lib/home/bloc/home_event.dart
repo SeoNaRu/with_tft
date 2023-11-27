@@ -93,3 +93,23 @@ class SelectedMyVocieCheck extends HomeEvent {
     required this.stringMyVoiceCheck,
   });
 }
+
+class SelectedPlayStyle extends HomeEvent {
+  final PlayStyle playStyle;
+  final String stringPlayStyle;
+
+  const SelectedPlayStyle({
+    required this.playStyle,
+    required this.stringPlayStyle,
+  });
+}
+
+class SelectedDuoType extends HomeEvent {
+  final DuoType duoType;
+  final String stringDuoType;
+
+  const SelectedDuoType({
+    required this.duoType,
+    required this.stringDuoType,
+  });
+}
