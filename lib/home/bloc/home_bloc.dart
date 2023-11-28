@@ -25,6 +25,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<SelectedMyVocieCheck>(_onSelectedMyVocieCheck);
     on<SelectedPlayStyle>(_onSelectedPlayStyle);
     on<SelectedDuoType>(_onSelectedDuoType);
+    on<SelectedPlayTime>(_onSelectedPlayTime);
   }
   FutureOr<void> _onSelectedCategory(SelectedCategory event, emit) async {
     emit(state.copyWith(status: event.category));
@@ -59,7 +60,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   FutureOr<void> _onSelectedMyVocieCheck(
       SelectedMyVocieCheck event, emit) async {
-    emit(state.copyWith(stringGameTypesStatus: event.stringMyVoiceCheck));
+    emit(state.copyWith(stringMyVoiceCheck: event.stringMyVoiceCheck));
     emit(state.copyWith(myVoiceCheck: event.myVoiceCheck));
   }
 
@@ -71,6 +72,11 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   FutureOr<void> _onSelectedDuoType(SelectedDuoType event, emit) async {
     emit(state.copyWith(stringDuoType: event.stringDuoType));
     emit(state.copyWith(duoType: event.duoType));
+  }
+
+  FutureOr<void> _onSelectedPlayTime(SelectedPlayTime event, emit) async {
+    emit(state.copyWith(stringPlayTime: event.stringPlayTime));
+    emit(state.copyWith(playTime: event.playTime));
   }
 
   FutureOr<void> _onPostWritingBoard(PostWritingBoard event, emit) async {

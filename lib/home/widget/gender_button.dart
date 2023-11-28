@@ -22,29 +22,31 @@ Widget genderButton(
   }
 
   bool isSelected = genderEnum == gender;
-  return GestureDetector(
-    onTap: () {
-      context.read<HomeBloc>().add(event);
-    },
-    child: Container(
-      margin: EdgeInsets.symmetric(vertical: 1, horizontal: 1),
-      padding: EdgeInsets.all(8.0),
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: Colors.black,
-          width: 2.0,
+  return Flexible(
+    child: GestureDetector(
+      onTap: () {
+        context.read<HomeBloc>().add(event);
+      },
+      child: Container(
+        margin: EdgeInsets.symmetric(vertical: 1, horizontal: 1),
+        padding: EdgeInsets.all(8.0),
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: Colors.black,
+            width: 2.0,
+          ),
+          color: isSelected ? Colors.black : Colors.transparent,
+          borderRadius: BorderRadius.all(
+            Radius.circular(15.0),
+          ),
         ),
-        color: isSelected ? Colors.black : Colors.transparent,
-        borderRadius: BorderRadius.all(
-          Radius.circular(15.0),
-        ),
-      ),
-      child: Center(
-        child: Text(
-          category,
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: isSelected ? Colors.white : Colors.black,
+        child: Center(
+          child: Text(
+            category,
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: isSelected ? Colors.white : Colors.black,
+            ),
           ),
         ),
       ),

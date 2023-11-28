@@ -26,7 +26,7 @@ enum DuoType {
   studentSeeking,
 }
 
-enum PlayTime { dawn, morning, dayEvening, night, weekday, weekend, random }
+enum PlayTime { morning, lunch, night, weekday, weekend, random }
 
 enum Interest { skillStudy, casualChat, streamer, tournamentWatch }
 
@@ -49,6 +49,7 @@ class HomeState extends Equatable {
   final DuoType duoType;
   final String stringDuoType;
   final PlayTime playTime;
+  final String stringPlayTime;
   final Interest interest;
   final List<ArticleModel> articles;
 
@@ -71,6 +72,7 @@ class HomeState extends Equatable {
     required this.duoType,
     required this.stringDuoType,
     required this.playTime,
+    required this.stringPlayTime,
     required this.interest,
     required this.articles,
   });
@@ -81,7 +83,7 @@ class HomeState extends Equatable {
       gameTypesStatus: GameTypes.normal,
       voiceStatus: VoiceCheck.off,
       personnelStatus: PersonnelCheck.one,
-      stringGameTypesStatus: '일반',
+      stringGameTypesStatus: '비밀',
       stringVoiceStatus: 'OFF',
       stringPersonnelStatus: '1',
       ageCategory: AgeCategory.secret,
@@ -95,6 +97,7 @@ class HomeState extends Equatable {
       duoType: DuoType.gamingParty,
       stringDuoType: '일반 파티',
       playTime: PlayTime.random,
+      stringPlayTime: '랜덤',
       interest: Interest.skillStudy,
       articles: [],
     );
@@ -125,6 +128,7 @@ class HomeState extends Equatable {
         duoType,
         stringDuoType,
         playTime,
+        stringPlayTime,
         interest,
         articles,
       ];
@@ -148,6 +152,7 @@ class HomeState extends Equatable {
     DuoType? duoType,
     String? stringDuoType,
     PlayTime? playTime,
+    String? stringPlayTime,
     Interest? interest,
     List<ArticleModel>? articles,
   }) {
@@ -172,6 +177,7 @@ class HomeState extends Equatable {
       duoType: duoType ?? this.duoType,
       stringDuoType: stringDuoType ?? this.stringDuoType,
       playTime: playTime ?? this.playTime,
+      stringPlayTime: stringPlayTime ?? this.stringPlayTime,
       interest: interest ?? this.interest,
       articles: articles ?? this.articles,
     );

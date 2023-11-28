@@ -45,107 +45,109 @@ class _LoginViewState extends State<LoginView> {
           appBar: AppBar(
             title: const Text('WITH TFT'),
           ),
-          body: Padding(
-            padding: const EdgeInsets.all(50),
-            child: Column(
-              children: [
-                const SizedBox(
-                  height: 50,
-                ),
-                const Column(
-                  children: [
-                    Text(
-                      'TFT 동료 찾기 - 함께 전략전을 즐기세요!',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 60,
-                ),
-                TextField(
-                  controller: nickNameController,
-                  decoration: const InputDecoration(
-                    labelText: 'Riot ID',
-                    hintText: '닉네임을 입력해주세요.',
-                    labelStyle: TextStyle(color: Colors.black),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                      borderSide: BorderSide(width: 1, color: Colors.black),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                      borderSide: BorderSide(width: 1, color: Colors.black),
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                    ),
+          body: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(50),
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 50,
                   ),
-                  keyboardType: TextInputType.emailAddress,
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                TextField(
-                  controller: lineTagController,
-                  decoration: const InputDecoration(
-                    labelText: 'Line Tag',
-                    hintText: '라인 태그을 입력해주세요.',
-                    labelStyle: TextStyle(color: Colors.black),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                      borderSide: BorderSide(width: 1, color: Colors.black),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                      borderSide: BorderSide(width: 1, color: Colors.black),
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                    ),
-                  ),
-                  keyboardType: TextInputType.emailAddress,
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    context.read<LoginBloc>().add((RiotSummonerName(
-                        nickName: nickNameController.text,
-                        lineTag: lineTagController.text)));
-                  },
-                  style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all<Color>(Colors.black),
-                    foregroundColor:
-                        MaterialStateProperty.all<Color>(Colors.white),
-                    shape: MaterialStateProperty.all<OutlinedBorder>(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10), // 라운드 없애기
-                      ),
-                    ),
-                    // 다른 스타일 속성들도 추가 가능
-                  ),
-                  child: const SizedBox(
-                    width: double.infinity,
-                    height: 60,
-                    child: Center(
-                      child: Text(
-                        '로그인',
+                  const Column(
+                    children: [
+                      Text(
+                        'TFT 동료 찾기 - 함께 전략전을 즐기세요!',
                         style: TextStyle(
-                          fontWeight: FontWeight.bold, // 볼드체
-                          fontSize: 16, // 크기 조정
-                          // 다른 스타일 속성들도 추가 가능
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 60,
+                  ),
+                  TextField(
+                    controller: nickNameController,
+                    decoration: const InputDecoration(
+                      labelText: 'Riot ID',
+                      hintText: '닉네임을 입력해주세요.',
+                      labelStyle: TextStyle(color: Colors.black),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                        borderSide: BorderSide(width: 1, color: Colors.black),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                        borderSide: BorderSide(width: 1, color: Colors.black),
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                      ),
+                    ),
+                    keyboardType: TextInputType.emailAddress,
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  TextField(
+                    controller: lineTagController,
+                    decoration: const InputDecoration(
+                      labelText: 'Line Tag',
+                      hintText: '라인 태그을 입력해주세요.',
+                      labelStyle: TextStyle(color: Colors.black),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                        borderSide: BorderSide(width: 1, color: Colors.black),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                        borderSide: BorderSide(width: 1, color: Colors.black),
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                      ),
+                    ),
+                    keyboardType: TextInputType.emailAddress,
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      context.read<LoginBloc>().add((RiotSummonerName(
+                          nickName: nickNameController.text,
+                          lineTag: lineTagController.text)));
+                    },
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.black),
+                      foregroundColor:
+                          MaterialStateProperty.all<Color>(Colors.white),
+                      shape: MaterialStateProperty.all<OutlinedBorder>(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10), // 라운드 없애기
+                        ),
+                      ),
+                      // 다른 스타일 속성들도 추가 가능
+                    ),
+                    child: const SizedBox(
+                      width: double.infinity,
+                      height: 60,
+                      child: Center(
+                        child: Text(
+                          '로그인',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold, // 볼드체
+                            fontSize: 16, // 크기 조정
+                            // 다른 스타일 속성들도 추가 가능
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                )
-              ],
+                  )
+                ],
+              ),
             ),
           ),
         );

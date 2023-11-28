@@ -48,7 +48,6 @@ class _WritingViewState extends State<WritingView> {
               child: Padding(
                 padding: const EdgeInsets.all(10),
                 child: Column(
-                  mainAxisSize: MainAxisSize.min,
                   children: [
                     Align(
                       alignment: Alignment.center,
@@ -80,50 +79,42 @@ class _WritingViewState extends State<WritingView> {
                     ),
                     Row(
                       children: [
-                        Expanded(
-                          child: gameTypeButton(
-                              context,
-                              '일반',
-                              const SelectedGameType(
-                                  gameTypesCategory: GameTypes.normal,
-                                  stringGameTypesStatus: '일반'),
-                              state.gameTypesStatus,
-                              state.personnelStatus),
-                        ),
-                        Expanded(
-                          child: gameTypeButton(
-                              context,
-                              '랭크',
-                              const SelectedGameType(
-                                  gameTypesCategory: GameTypes.ranked,
-                                  stringGameTypesStatus: '랭크'),
-                              state.gameTypesStatus,
-                              state.personnelStatus),
-                        ),
+                        gameTypeButton(
+                            context,
+                            '일반',
+                            const SelectedGameType(
+                                gameTypesCategory: GameTypes.normal,
+                                stringGameTypesStatus: '일반'),
+                            state.gameTypesStatus,
+                            state.personnelStatus),
+                        gameTypeButton(
+                            context,
+                            '랭크',
+                            const SelectedGameType(
+                                gameTypesCategory: GameTypes.ranked,
+                                stringGameTypesStatus: '랭크'),
+                            state.gameTypesStatus,
+                            state.personnelStatus),
                       ],
                     ),
                     Row(
                       children: [
-                        Expanded(
-                          child: gameTypeButton(
-                              context,
-                              '더블업',
-                              const SelectedGameType(
-                                  gameTypesCategory: GameTypes.doubleUp,
-                                  stringGameTypesStatus: '더블업'),
-                              state.gameTypesStatus,
-                              state.personnelStatus),
-                        ),
-                        Expanded(
-                          child: gameTypeButton(
-                              context,
-                              '초고속',
-                              const SelectedGameType(
-                                  gameTypesCategory: GameTypes.turbo,
-                                  stringGameTypesStatus: '초고속'),
-                              state.gameTypesStatus,
-                              state.personnelStatus),
-                        ),
+                        gameTypeButton(
+                            context,
+                            '더블업',
+                            const SelectedGameType(
+                                gameTypesCategory: GameTypes.doubleUp,
+                                stringGameTypesStatus: '더블업'),
+                            state.gameTypesStatus,
+                            state.personnelStatus),
+                        gameTypeButton(
+                            context,
+                            '초고속',
+                            const SelectedGameType(
+                                gameTypesCategory: GameTypes.turbo,
+                                stringGameTypesStatus: '초고속'),
+                            state.gameTypesStatus,
+                            state.personnelStatus),
                       ],
                     ),
                     SizedBox(
@@ -159,24 +150,20 @@ class _WritingViewState extends State<WritingView> {
                     ),
                     Row(
                       children: [
-                        Expanded(
-                          child: voiceCheckButton(
-                              context,
-                              'ON',
-                              const SelectedVocieCheck(
-                                  voiceCheck: VoiceCheck.on,
-                                  stringVoiceStatus: "ON"),
-                              state.voiceStatus),
-                        ),
-                        Expanded(
-                          child: voiceCheckButton(
-                              context,
-                              'OFF',
-                              const SelectedVocieCheck(
-                                  voiceCheck: VoiceCheck.off,
-                                  stringVoiceStatus: "OFF"),
-                              state.voiceStatus),
-                        ),
+                        voiceCheckButton(
+                            context,
+                            'ON',
+                            const SelectedVocieCheck(
+                                voiceCheck: VoiceCheck.on,
+                                stringVoiceStatus: "ON"),
+                            state.voiceStatus),
+                        voiceCheckButton(
+                            context,
+                            'OFF',
+                            const SelectedVocieCheck(
+                                voiceCheck: VoiceCheck.off,
+                                stringVoiceStatus: "OFF"),
+                            state.voiceStatus),
                       ],
                     ),
                     SizedBox(
@@ -213,91 +200,73 @@ class _WritingViewState extends State<WritingView> {
                     state.gameTypesStatus == GameTypes.ranked
                         ? Row(
                             children: [
-                              Expanded(
-                                child: personnelCheckButton(
-                                    context,
-                                    '1',
-                                    const SelectedPersonnelCheck(
-                                        personnelCheck: PersonnelCheck.one,
-                                        stringPersonnelStatus: "1"),
-                                    state.personnelStatus),
-                              ),
-                              Expanded(
-                                child: personnelCheckButton(
-                                    context,
-                                    '2',
-                                    const SelectedPersonnelCheck(
-                                        personnelCheck: PersonnelCheck.two,
-                                        stringPersonnelStatus: "2"),
-                                    state.personnelStatus),
-                              ),
+                              personnelCheckButton(
+                                  context,
+                                  '1',
+                                  const SelectedPersonnelCheck(
+                                      personnelCheck: PersonnelCheck.one,
+                                      stringPersonnelStatus: "1"),
+                                  state.personnelStatus),
+                              personnelCheckButton(
+                                  context,
+                                  '2',
+                                  const SelectedPersonnelCheck(
+                                      personnelCheck: PersonnelCheck.two,
+                                      stringPersonnelStatus: "2"),
+                                  state.personnelStatus),
                             ],
                           )
                         : Row(
                             children: [
-                              Expanded(
-                                child: personnelCheckButton(
-                                    context,
-                                    '1',
-                                    const SelectedPersonnelCheck(
-                                        personnelCheck: PersonnelCheck.one,
-                                        stringPersonnelStatus: "1"),
-                                    state.personnelStatus),
-                              ),
-                              Expanded(
-                                child: personnelCheckButton(
-                                    context,
-                                    '2',
-                                    const SelectedPersonnelCheck(
-                                        personnelCheck: PersonnelCheck.two,
-                                        stringPersonnelStatus: "2"),
-                                    state.personnelStatus),
-                              ),
-                              Expanded(
-                                child: personnelCheckButton(
-                                    context,
-                                    '3',
-                                    const SelectedPersonnelCheck(
-                                        personnelCheck: PersonnelCheck.three,
-                                        stringPersonnelStatus: "3"),
-                                    state.personnelStatus),
-                              ),
-                              Expanded(
-                                child: personnelCheckButton(
-                                    context,
-                                    '4',
-                                    const SelectedPersonnelCheck(
-                                        personnelCheck: PersonnelCheck.four,
-                                        stringPersonnelStatus: "4"),
-                                    state.personnelStatus),
-                              ),
-                              Expanded(
-                                child: personnelCheckButton(
-                                    context,
-                                    '5',
-                                    const SelectedPersonnelCheck(
-                                        personnelCheck: PersonnelCheck.five,
-                                        stringPersonnelStatus: "5"),
-                                    state.personnelStatus),
-                              ),
-                              Expanded(
-                                child: personnelCheckButton(
-                                    context,
-                                    '6',
-                                    const SelectedPersonnelCheck(
-                                        personnelCheck: PersonnelCheck.six,
-                                        stringPersonnelStatus: "6"),
-                                    state.personnelStatus),
-                              ),
-                              Expanded(
-                                child: personnelCheckButton(
-                                    context,
-                                    '7',
-                                    const SelectedPersonnelCheck(
-                                        personnelCheck: PersonnelCheck.seven,
-                                        stringPersonnelStatus: "7"),
-                                    state.personnelStatus),
-                              ),
+                              personnelCheckButton(
+                                  context,
+                                  '1',
+                                  const SelectedPersonnelCheck(
+                                      personnelCheck: PersonnelCheck.one,
+                                      stringPersonnelStatus: "1"),
+                                  state.personnelStatus),
+                              personnelCheckButton(
+                                  context,
+                                  '2',
+                                  const SelectedPersonnelCheck(
+                                      personnelCheck: PersonnelCheck.two,
+                                      stringPersonnelStatus: "2"),
+                                  state.personnelStatus),
+                              personnelCheckButton(
+                                  context,
+                                  '3',
+                                  const SelectedPersonnelCheck(
+                                      personnelCheck: PersonnelCheck.three,
+                                      stringPersonnelStatus: "3"),
+                                  state.personnelStatus),
+                              personnelCheckButton(
+                                  context,
+                                  '4',
+                                  const SelectedPersonnelCheck(
+                                      personnelCheck: PersonnelCheck.four,
+                                      stringPersonnelStatus: "4"),
+                                  state.personnelStatus),
+                              personnelCheckButton(
+                                  context,
+                                  '5',
+                                  const SelectedPersonnelCheck(
+                                      personnelCheck: PersonnelCheck.five,
+                                      stringPersonnelStatus: "5"),
+                                  state.personnelStatus),
+                              personnelCheckButton(
+                                  context,
+                                  '6',
+                                  const SelectedPersonnelCheck(
+                                      personnelCheck: PersonnelCheck.six,
+                                      stringPersonnelStatus: "6"),
+                                  state.personnelStatus),
+                              personnelCheckButton(
+                                  context,
+                                  '7',
+                                  const SelectedPersonnelCheck(
+                                      personnelCheck: PersonnelCheck.seven,
+                                      stringPersonnelStatus: "7"),
+                                  state.personnelStatus),
                             ],
                           ),
                     SizedBox(

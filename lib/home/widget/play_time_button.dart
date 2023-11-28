@@ -4,40 +4,36 @@ import 'package:with_tft/home/bloc/home_bloc.dart';
 import 'package:with_tft/home/bloc/home_event.dart';
 import 'package:with_tft/home/bloc/home_state.dart';
 
-Widget gameTypeButton(
-  BuildContext context,
-  String category,
-  HomeEvent event,
-  GameTypes gameTypesStatus,
-  PersonnelCheck personnelEnum,
-) {
-  GameTypes gameTypesEnum;
+Widget playTimeButton(
+    BuildContext context, String category, HomeEvent event, PlayTime playTime) {
+  PlayTime playTimeEnum;
   switch (category) {
-    case '일반':
-      gameTypesEnum = GameTypes.normal;
+    case '아침':
+      playTimeEnum = PlayTime.morning;
       break;
-    case '랭크':
-      gameTypesEnum = GameTypes.ranked;
+    case '점심':
+      playTimeEnum = PlayTime.lunch;
       break;
-    case '초고속':
-      gameTypesEnum = GameTypes.turbo;
+    case '저녁':
+      playTimeEnum = PlayTime.night;
       break;
-    case '더블업':
-      gameTypesEnum = GameTypes.doubleUp;
+    case '평일':
+      playTimeEnum = PlayTime.weekday;
+      break;
+    case '주말':
+      playTimeEnum = PlayTime.weekend;
+      break;
+    case '랜덤':
+      playTimeEnum = PlayTime.random;
       break;
     default:
-      gameTypesEnum = GameTypes.normal;
+      playTimeEnum = PlayTime.random;
   }
-  bool ispersonnelCheck = personnelEnum != PersonnelCheck.one &&
-      personnelEnum != PersonnelCheck.two;
-  bool isSelected = gameTypesEnum == gameTypesStatus;
+
+  bool isSelected = playTimeEnum == playTime;
   return Flexible(
     child: GestureDetector(
       onTap: () {
-        if (category == '랭크' && ispersonnelCheck) {
-          context.read<HomeBloc>().add(const SelectedPersonnelCheck(
-              personnelCheck: PersonnelCheck.one, stringPersonnelStatus: "1"));
-        }
         context.read<HomeBloc>().add(event);
       },
       child: Container(

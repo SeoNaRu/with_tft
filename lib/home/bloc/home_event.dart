@@ -113,3 +113,13 @@ class SelectedDuoType extends HomeEvent {
     required this.stringDuoType,
   });
 }
+
+class SelectedPlayTime extends HomeEvent {
+  final PlayTime playTime;
+  final String stringPlayTime;
+
+  const SelectedPlayTime({
+    required this.playTime,
+    required this.stringPlayTime,
+  });
+}

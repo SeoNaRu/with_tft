@@ -55,7 +55,7 @@ class _HomeViewState extends State<HomeView> {
           body: Column(
             children: [
               SizedBox(height: 10),
-              Align(
+              Container(
                 alignment: Alignment.center,
                 child: Container(
                   margin: EdgeInsets.symmetric(horizontal: 20.0),
