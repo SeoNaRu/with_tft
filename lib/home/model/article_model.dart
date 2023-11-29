@@ -8,6 +8,7 @@
 import 'package:equatable/equatable.dart';
 
 class ArticleModel extends Equatable {
+  final String puuid;
   final String nickName;
   final String lineTag;
   final String tier;
@@ -16,6 +17,7 @@ class ArticleModel extends Equatable {
   final String personel;
 
   static const empty = ArticleModel(
+    puuid: '',
     nickName: '',
     lineTag: '',
     tier: '',
@@ -25,6 +27,7 @@ class ArticleModel extends Equatable {
   );
 
   const ArticleModel({
+    required this.puuid,
     required this.nickName,
     required this.lineTag,
     required this.tier,
@@ -35,6 +38,7 @@ class ArticleModel extends Equatable {
 
   @override
   List<Object?> get props => [
+        puuid,
         nickName,
         lineTag,
         tier,
@@ -45,11 +49,12 @@ class ArticleModel extends Equatable {
 
   @override
   String toString() {
-    return 'ArticleModel{nickName: $nickName, lineTag: $lineTag, tier:$tier, gameType: $gameType, vocie: $vocie, personel: $personel}';
+    return 'ArticleModel{nickName: $nickName, lineTag: $lineTag, tier:$tier, gameType: $gameType, vocie: $vocie, personel: $personel puuid:$puuid}';
   }
 
   Map<String, dynamic> toMap() {
     return {
+      'puuid': puuid,
       'nickName': nickName,
       'lineTag': lineTag,
       'tier': tier,
@@ -61,6 +66,7 @@ class ArticleModel extends Equatable {
 
   factory ArticleModel.fromMap(Map<String, dynamic> map) {
     return ArticleModel(
+      puuid: map['puuid'] ?? "",
       nickName: map['nickName'] ?? "",
       lineTag: map['lineTag'] ?? "",
       tier: map['tier'] ?? "",
@@ -71,6 +77,7 @@ class ArticleModel extends Equatable {
   }
 
   ArticleModel copyWith({
+    String? puuid,
     String? nickName,
     String? lineTag,
     String? tier,
@@ -79,6 +86,7 @@ class ArticleModel extends Equatable {
     String? personel,
   }) {
     return ArticleModel(
+      puuid: puuid ?? this.puuid,
       nickName: nickName ?? this.nickName,
       lineTag: lineTag ?? this.lineTag,
       tier: tier ?? this.tier,

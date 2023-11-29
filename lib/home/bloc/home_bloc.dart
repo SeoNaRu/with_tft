@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:with_tft/home/bloc/home_event.dart';
@@ -26,6 +27,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<SelectedPlayStyle>(_onSelectedPlayStyle);
     on<SelectedDuoType>(_onSelectedDuoType);
     on<SelectedPlayTime>(_onSelectedPlayTime);
+    on<SaveUserProfile>(_onSaveUserProfile);
+    on<SelectedUserVisible>(_onSelectedUserVisible);
   }
   FutureOr<void> _onSelectedCategory(SelectedCategory event, emit) async {
     emit(state.copyWith(status: event.category));
@@ -79,8 +82,14 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     emit(state.copyWith(playTime: event.playTime));
   }
 
+  FutureOr<void> _onSelectedUserVisible(SelectedUserVisible event, emit) async {
+    emit(state.copyWith(stringIsUserDetailVisible: event.stringUserVisible));
+    emit(state.copyWith(isUserDetailVisible: event.userVisible));
+  }
+
   FutureOr<void> _onPostWritingBoard(PostWritingBoard event, emit) async {
     dynamic body = {
+      "puuid": event.puuid,
       "nickName": event.nickName,
       "lineTag": event.lineTag,
       "tier": event.tier,
@@ -105,5 +114,22 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         response.map<ArticleModel>((e) => ArticleModel.fromMap(e)).toList();
 
     emit(state.copyWith(articles: articles));
+  }
+
+  FutureOr<void> _onSaveUserProfile(SaveUserProfile event, emit) async {
+    dynamic body = {
+      // "nickName": event.nickName,
+      "puuid": event.puuid,
+      "nickName": event.nickName,
+      "lineTag": event.lineTag,
+      "age": state.stringAgeCategory,
+      "gender": state.stringGender,
+      "myVoice": state.stringMyVoiceCheck,
+      "playStyle": state.stringPlayStyle,
+      "duoType": state.stringDuoType,
+      "playTime": state.stringPlayTime,
+      "visble": state.stringIsUserDetailVisible,
+      "description": state.userDescription,
+    };
   }
 }

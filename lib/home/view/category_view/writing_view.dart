@@ -278,6 +278,7 @@ class _WritingViewState extends State<WritingView> {
                           ..add(const SelectedCategory(
                               category: HomeCategory.findTeam))
                           ..add(PostWritingBoard(
+                              puuid: loginBloc.state.user.puuid,
                               lineTag: loginBloc.state.user.lingTag,
                               nickName: loginBloc.state.user.name,
                               tier: loginBloc.state.tier.tier));

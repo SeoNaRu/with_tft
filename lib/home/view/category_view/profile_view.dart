@@ -9,6 +9,7 @@ import 'package:with_tft/home/widget/gender_button.dart';
 import 'package:with_tft/home/widget/my_voice_check_button.dart';
 import 'package:with_tft/home/widget/play_style_button.dart';
 import 'package:with_tft/home/widget/play_time_button.dart';
+import 'package:with_tft/home/widget/user_visible_button.dart';
 import 'package:with_tft/login/bloc/login_bloc.dart';
 
 class MyProfileView extends StatefulWidget {
@@ -23,11 +24,15 @@ class _MyProfileViewState extends State<MyProfileView> {
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(builder: (context, state) {
       final loginBloc = BlocProvider.of<LoginBloc>(context);
+      final descriptionController = TextEditingController();
+      // descriptionController.selection =
+      //     TextSelection.collapsed(offset: descriptionController.text.length);
       return Expanded(
         child: SingleChildScrollView(
           child: Column(
             children: [
               // 프로필 사진
+
               Container(
                 width: double.infinity,
                 margin: EdgeInsets.only(left: 20, right: 20, bottom: 16),
@@ -53,6 +58,23 @@ class _MyProfileViewState extends State<MyProfileView> {
                   padding: const EdgeInsets.all(10.0),
                   child: Column(
                     children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(loginBloc.state.user.name),
+                          Text(
+                            ' #${loginBloc.state.user.lingTag}',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey,
+                              fontSize: 12,
+                            ),
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: 6,
+                      ),
                       Container(
                           width: double.infinity,
                           height: 150.0,
@@ -67,6 +89,34 @@ class _MyProfileViewState extends State<MyProfileView> {
                             ),
                           )),
                       SizedBox(
+                        height: 6,
+                      ),
+                      TextField(
+                        controller: descriptionController,
+                        decoration: const InputDecoration(
+                          // labelText: '한줄 소개',
+                          hintText: '한줄 소개 해주세요.!',
+                          labelStyle: TextStyle(color: Colors.black),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10.0)),
+                            borderSide:
+                                BorderSide(width: 1, color: Colors.black),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10.0)),
+                            borderSide:
+                                BorderSide(width: 2, color: Colors.black),
+                          ),
+                          border: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10.0)),
+                          ),
+                        ),
+                        keyboardType: TextInputType.emailAddress,
+                      ),
+                      SizedBox(
                         height: 10,
                       ),
                       Padding(
@@ -79,10 +129,6 @@ class _MyProfileViewState extends State<MyProfileView> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(
-                                  '닉네임 : ${loginBloc.state.user.name}',
-                                  style: Theme.of(context).textTheme.bodyMedium,
-                                ),
                                 Text('나이 : ${state.stringAgeCategory}',
                                     style:
                                         Theme.of(context).textTheme.bodyMedium),
@@ -98,10 +144,6 @@ class _MyProfileViewState extends State<MyProfileView> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(
-                                  '라인 태그 : ${loginBloc.state.user.lingTag}',
-                                  style: Theme.of(context).textTheme.bodyMedium,
-                                ),
                                 Text('플레이 : ${state.stringPlayStyle}',
                                     style:
                                         Theme.of(context).textTheme.bodyMedium),
@@ -547,6 +589,135 @@ class _MyProfileViewState extends State<MyProfileView> {
                                 state.duoType),
                           ],
                         ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Align(
+                          alignment: Alignment.center,
+                          child: Container(
+                              width: double.infinity - 4,
+                              height: 50.0,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                border: Border.all(
+                                  color: Colors.black,
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(20.0),
+                                ),
+                              ),
+                              child: Center(
+                                  child: Text(
+                                '공개 설정',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                  fontSize: 20,
+                                ),
+                              ))),
+                        ),
+                        SizedBox(
+                          height: 6,
+                        ),
+                        Row(
+                          children: [
+                            userVisibleButton(
+                                context,
+                                'ON',
+                                const SelectedUserVisible(
+                                    userVisible: UserDetailVisible.on,
+                                    stringUserVisible: "ON"),
+                                state.isUserDetailVisible),
+                            userVisibleButton(
+                                context,
+                                'OFF',
+                                const SelectedUserVisible(
+                                    userVisible: UserDetailVisible.off,
+                                    stringUserVisible: "OFF"),
+                                state.isUserDetailVisible),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            // context.read<LoginBloc>().add((RiotSummonerName(
+                            //     nickName: nickNameController.text,
+                            //     lineTag: lineTagController.text)));
+                          },
+                          style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStateProperty.all<Color>(Colors.black),
+                            foregroundColor:
+                                MaterialStateProperty.all<Color>(Colors.white),
+                            shape: MaterialStateProperty.all<OutlinedBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius:
+                                    BorderRadius.circular(20), // 라운드 없애기
+                              ),
+                            ),
+                            // 다른 스타일 속성들도 추가 가능
+                          ),
+                          child: const SizedBox(
+                            width: double.infinity,
+                            height: 50,
+                            child: Center(
+                              child: Text(
+                                '저장 하기',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold, // 볼드체
+                                  fontSize: 16, // 크기 조정
+                                  // 다른 스타일 속성들도 추가 가능
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 40,
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            // context.read<LoginBloc>().add((RiotSummonerName(
+                            //     nickName: nickNameController.text,
+                            //     lineTag: lineTagController.text)));
+                          },
+                          style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStateProperty.resolveWith<Color>(
+                              (Set<MaterialState> states) {
+                                if (states.contains(MaterialState.pressed)) {
+                                  return Colors.grey;
+                                }
+                                return Color(0xFF800000);
+                              },
+                            ),
+
+                            foregroundColor:
+                                MaterialStateProperty.all<Color>(Colors.white),
+                            shape: MaterialStateProperty.all<OutlinedBorder>(
+                              RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                            ),
+                            // 다른 스타일 속성들도 추가 가능
+                          ),
+                          child: const SizedBox(
+                            width: double.infinity,
+                            height: 50,
+                            child: Center(
+                              child: Text(
+                                '로그 아웃',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                    color: Colors.white),
+                              ),
+                            ),
+                          ),
+                        )
                       ],
                     ),
                   ),

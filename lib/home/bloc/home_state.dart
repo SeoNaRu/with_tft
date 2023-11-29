@@ -30,6 +30,8 @@ enum PlayTime { morning, lunch, night, weekday, weekend, random }
 
 enum Interest { skillStudy, casualChat, streamer, tournamentWatch }
 
+enum UserDetailVisible { on, off }
+
 class HomeState extends Equatable {
   final HomeCategory status;
   final GameTypes gameTypesStatus;
@@ -51,6 +53,9 @@ class HomeState extends Equatable {
   final PlayTime playTime;
   final String stringPlayTime;
   final Interest interest;
+  final String userDescription;
+  final UserDetailVisible isUserDetailVisible;
+  final String stringIsUserDetailVisible;
   final List<ArticleModel> articles;
 
   const HomeState({
@@ -74,6 +79,9 @@ class HomeState extends Equatable {
     required this.playTime,
     required this.stringPlayTime,
     required this.interest,
+    required this.userDescription,
+    required this.isUserDetailVisible,
+    required this.stringIsUserDetailVisible,
     required this.articles,
   });
 
@@ -99,6 +107,9 @@ class HomeState extends Equatable {
       playTime: PlayTime.random,
       stringPlayTime: '랜덤',
       interest: Interest.skillStudy,
+      userDescription: '',
+      isUserDetailVisible: UserDetailVisible.off,
+      stringIsUserDetailVisible: 'OFF',
       articles: [],
     );
   }
@@ -130,6 +141,9 @@ class HomeState extends Equatable {
         playTime,
         stringPlayTime,
         interest,
+        userDescription,
+        isUserDetailVisible,
+        stringIsUserDetailVisible,
         articles,
       ];
 
@@ -154,6 +168,9 @@ class HomeState extends Equatable {
     PlayTime? playTime,
     String? stringPlayTime,
     Interest? interest,
+    String? userDescription,
+    UserDetailVisible? isUserDetailVisible,
+    String? stringIsUserDetailVisible,
     List<ArticleModel>? articles,
   }) {
     return HomeState(
@@ -179,6 +196,10 @@ class HomeState extends Equatable {
       playTime: playTime ?? this.playTime,
       stringPlayTime: stringPlayTime ?? this.stringPlayTime,
       interest: interest ?? this.interest,
+      userDescription: userDescription ?? this.userDescription,
+      isUserDetailVisible: isUserDetailVisible ?? this.isUserDetailVisible,
+      stringIsUserDetailVisible:
+          stringIsUserDetailVisible ?? this.stringIsUserDetailVisible,
       articles: articles ?? this.articles,
     );
   }

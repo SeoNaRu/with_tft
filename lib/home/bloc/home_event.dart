@@ -52,11 +52,13 @@ class PostWritingBoard extends HomeEvent {
   final String nickName;
   final String lineTag;
   final String tier;
+  final String puuid;
 
   const PostWritingBoard({
     required this.nickName,
     required this.lineTag,
     required this.tier,
+    required this.puuid,
   });
 }
 
@@ -122,4 +124,22 @@ class SelectedPlayTime extends HomeEvent {
     required this.playTime,
     required this.stringPlayTime,
   });
+}
+
+class SelectedUserVisible extends HomeEvent {
+  final UserDetailVisible userVisible;
+  final String stringUserVisible;
+
+  const SelectedUserVisible({
+    required this.userVisible,
+    required this.stringUserVisible,
+  });
+}
+
+class SaveUserProfile extends HomeEvent {
+  final String nickName;
+  final String lineTag;
+  final String puuid;
+  const SaveUserProfile(
+      {required this.nickName, required this.lineTag, required this.puuid});
 }
