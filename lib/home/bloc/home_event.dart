@@ -140,6 +140,12 @@ class SaveUserProfile extends HomeEvent {
   final String nickName;
   final String lineTag;
   final String puuid;
+  final String tier;
+  final String description;
   const SaveUserProfile(
-      {required this.nickName, required this.lineTag, required this.puuid});
+      {required this.nickName,
+      required this.lineTag,
+      required this.tier,
+      required this.puuid,
+      required this.description});
 }

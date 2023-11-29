@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:with_tft/home/model/article_model.dart';
+import 'package:with_tft/home/model/user_profile_model.dart';
 
 enum HomeCategory { findTeam, synergyHelper, profile, writing }
 
@@ -34,6 +35,7 @@ enum UserDetailVisible { on, off }
 
 class HomeState extends Equatable {
   final HomeCategory status;
+  final List<Profile> userProfileList;
   final GameTypes gameTypesStatus;
   final String stringGameTypesStatus;
   final VoiceCheck voiceStatus;
@@ -61,6 +63,7 @@ class HomeState extends Equatable {
   const HomeState({
     required this.status,
     required this.gameTypesStatus,
+    required this.userProfileList,
     required this.voiceStatus,
     required this.personnelStatus,
     required this.stringGameTypesStatus,
@@ -88,6 +91,7 @@ class HomeState extends Equatable {
   factory HomeState.init() {
     return const HomeState(
       status: HomeCategory.findTeam,
+      userProfileList: [],
       gameTypesStatus: GameTypes.normal,
       voiceStatus: VoiceCheck.off,
       personnelStatus: PersonnelCheck.one,
@@ -116,12 +120,13 @@ class HomeState extends Equatable {
 
   @override
   String toString() {
-    return 'HomeState{status: $status gameTypesStatus:$gameTypesStatus voiceStatus:$voiceStatus personnelStatus:$personnelStatus stringGameTypesStatus:$stringGameTypesStatus stringVoiceStatus:$stringVoiceStatus stringPersonnelStatus:$stringPersonnelStatus ageCategory:$ageCategory gender:$gender playStyle:$playStyle duoType:$duoType playTime:$playTime interest:$interest articles:$articles ageCategory:$ageCategory}';
+    return 'HomeState{status: $status gameTypesStatus:$gameTypesStatus voiceStatus:$voiceStatus personnelStatus:$personnelStatus stringGameTypesStatus:$stringGameTypesStatus stringVoiceStatus:$stringVoiceStatus stringPersonnelStatus:$stringPersonnelStatus ageCategory:$ageCategory gender:$gender playStyle:$playStyle duoType:$duoType playTime:$playTime interest:$interest articles:$articles ageCategory:$ageCategory userProfileList:$userProfileList}';
   }
 
   @override
   List<Object?> get props => [
         status,
+        userProfileList,
         gameTypesStatus,
         voiceStatus,
         personnelStatus,
@@ -149,6 +154,7 @@ class HomeState extends Equatable {
 
   HomeState copyWith({
     HomeCategory? status,
+    List<Profile>? userProfileList,
     GameTypes? gameTypesStatus,
     VoiceCheck? voiceStatus,
     PersonnelCheck? personnelStatus,
@@ -176,6 +182,7 @@ class HomeState extends Equatable {
     return HomeState(
       status: status ?? this.status,
       gameTypesStatus: gameTypesStatus ?? this.gameTypesStatus,
+      userProfileList: userProfileList ?? this.userProfileList,
       voiceStatus: voiceStatus ?? this.voiceStatus,
       personnelStatus: personnelStatus ?? this.personnelStatus,
       stringGameTypesStatus:

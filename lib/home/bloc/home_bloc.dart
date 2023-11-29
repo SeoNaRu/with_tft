@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:with_tft/home/bloc/home_event.dart';
 import 'package:with_tft/home/bloc/home_state.dart';
 import 'package:with_tft/home/model/article_model.dart';
+import 'package:with_tft/home/model/user_profile_model.dart';
 import 'package:with_tft/my/my_env.dart';
 import 'package:with_tft/repository/authentication_repository.dart';
 
@@ -122,6 +123,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       "puuid": event.puuid,
       "nickName": event.nickName,
       "lineTag": event.lineTag,
+      "tier": event.tier,
       "age": state.stringAgeCategory,
       "gender": state.stringGender,
       "myVoice": state.stringMyVoiceCheck,
@@ -129,7 +131,16 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       "duoType": state.stringDuoType,
       "playTime": state.stringPlayTime,
       "visble": state.stringIsUserDetailVisible,
-      "description": state.userDescription,
+      "description": event.description,
     };
+    dynamic response =
+        await _authenticationRepository.testPost(MyEnv.testIp, '/user', body);
+
+    print('유저 정보 저장 $response');
+
+    // List<Profile> users =
+    //     response.map<Profile>((e) => Profile.fromMap(e)).toList();
+
+    // emit(state.copyWith(userProfileList: users));
   }
 }

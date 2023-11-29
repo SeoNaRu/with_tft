@@ -1,5 +1,8 @@
 class Profile {
-  final bool isUserDetailVisible;
+  final String puuid;
+  final String nickName;
+  final String lineTag;
+  final String isUserDetailVisible;
   final String userDescription;
   final String gameTypesStatus;
   final String voiceStatus;
@@ -12,7 +15,10 @@ class Profile {
   final String playTime;
 
   static const empty = Profile(
-    isUserDetailVisible: false,
+    puuid: '',
+    nickName: '',
+    lineTag: '',
+    isUserDetailVisible: '',
     userDescription: '',
     gameTypesStatus: '',
     voiceStatus: '',
@@ -26,6 +32,9 @@ class Profile {
   );
 
   const Profile({
+    required this.puuid,
+    required this.nickName,
+    required this.lineTag,
     required this.isUserDetailVisible,
     required this.userDescription,
     required this.gameTypesStatus,
@@ -41,6 +50,9 @@ class Profile {
 
   Map<String, dynamic> toMap() {
     return {
+      'puuid': puuid,
+      'nickName': nickName,
+      'lineTag': lineTag,
       'isUserDetailVisible': isUserDetailVisible,
       'userDescription': userDescription,
       'gameTypesStatus': gameTypesStatus,
@@ -57,7 +69,10 @@ class Profile {
 
   factory Profile.fromMap(Map<String, dynamic> map) {
     return Profile(
-      isUserDetailVisible: map['isUserDetailVisible'] ?? false,
+      puuid: map['puuid'] ?? '',
+      nickName: map['nickName'] ?? '',
+      lineTag: map['lineTag'] ?? '',
+      isUserDetailVisible: map['uservVisible'] ?? '',
       userDescription: map['userDescription'] ?? '',
       gameTypesStatus: map['gameTypesStatus'] ?? '',
       voiceStatus: map['voiceStatus'] ?? '',
@@ -72,7 +87,10 @@ class Profile {
   }
 
   Profile copyWith({
-    bool? isUserDetailVisible,
+    String? puuid,
+    String? nickName,
+    String? lineTag,
+    String? isUserDetailVisible,
     String? userDescription,
     String? gameTypesStatus,
     String? voiceStatus,
@@ -85,6 +103,9 @@ class Profile {
     String? playTime,
   }) {
     return Profile(
+      puuid: puuid ?? this.puuid,
+      nickName: nickName ?? this.nickName,
+      lineTag: lineTag ?? this.lineTag,
       isUserDetailVisible: isUserDetailVisible ?? this.isUserDetailVisible,
       userDescription: userDescription ?? this.userDescription,
       gameTypesStatus: gameTypesStatus ?? this.gameTypesStatus,

@@ -643,9 +643,13 @@ class _MyProfileViewState extends State<MyProfileView> {
                         ),
                         ElevatedButton(
                           onPressed: () {
-                            // context.read<LoginBloc>().add((RiotSummonerName(
-                            //     nickName: nickNameController.text,
-                            //     lineTag: lineTagController.text)));
+                            context.read<HomeBloc>().add((SaveUserProfile(
+                                  nickName: loginBloc.state.user.name,
+                                  lineTag: loginBloc.state.user.lingTag,
+                                  puuid: loginBloc.state.user.puuid,
+                                  description: descriptionController.text,
+                                  tier: loginBloc.state.tier.tier,
+                                )));
                           },
                           style: ButtonStyle(
                             backgroundColor:
