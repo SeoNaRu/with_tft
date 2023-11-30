@@ -8,11 +8,11 @@ Widget categoryButton(BuildContext context, String category, HomeEvent event,
     HomeCategory currentStatus) {
   HomeCategory categoryEnum;
   switch (category) {
-    case '동료찾기':
+    case '동료 찾기':
       categoryEnum = HomeCategory.findTeam;
       break;
-    case '시너지':
-      categoryEnum = HomeCategory.synergyHelper;
+    case '듀오 찾기':
+      categoryEnum = HomeCategory.findDuo;
       break;
     case '프로필':
       categoryEnum = HomeCategory.profile;

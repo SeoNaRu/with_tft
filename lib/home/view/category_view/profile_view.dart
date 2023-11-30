@@ -11,6 +11,7 @@ import 'package:with_tft/home/widget/play_style_button.dart';
 import 'package:with_tft/home/widget/play_time_button.dart';
 import 'package:with_tft/home/widget/user_visible_button.dart';
 import 'package:with_tft/login/bloc/login_bloc.dart';
+import 'package:with_tft/login/view/login_view.dart';
 
 class MyProfileView extends StatefulWidget {
   const MyProfileView({super.key});
@@ -93,9 +94,11 @@ class _MyProfileViewState extends State<MyProfileView> {
                       ),
                       TextField(
                         controller: descriptionController,
+                        maxLength: 20,
                         decoration: const InputDecoration(
                           // labelText: '한줄 소개',
-                          hintText: '한줄 소개 해주세요.!',
+                          hintText: '한줄 소개 해주세요.!(20 글자)',
+                          counterText: '',
                           labelStyle: TextStyle(color: Colors.black),
                           focusedBorder: OutlineInputBorder(
                             borderRadius:
@@ -114,7 +117,7 @@ class _MyProfileViewState extends State<MyProfileView> {
                                 BorderRadius.all(Radius.circular(10.0)),
                           ),
                         ),
-                        keyboardType: TextInputType.emailAddress,
+                        keyboardType: TextInputType.text,
                       ),
                       SizedBox(
                         height: 10,
@@ -684,9 +687,11 @@ class _MyProfileViewState extends State<MyProfileView> {
                         ),
                         ElevatedButton(
                           onPressed: () {
-                            // context.read<LoginBloc>().add((RiotSummonerName(
-                            //     nickName: nickNameController.text,
-                            //     lineTag: lineTagController.text)));
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const LoginView()),
+                            );
                           },
                           style: ButtonStyle(
                             backgroundColor:

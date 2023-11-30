@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:with_tft/home/bloc/home_bloc.dart';
 import 'package:with_tft/home/bloc/home_event.dart';
 import 'package:with_tft/home/bloc/home_state.dart';
+import 'package:with_tft/home/view/category_view/find_duo_view,.dart';
 import 'package:with_tft/home/view/category_view/find_team_view.dart';
 import 'package:with_tft/home/view/category_view/synergy_helper_view.dart';
 import 'package:with_tft/home/view/category_view/profile_view.dart';
@@ -100,16 +101,16 @@ class _HomeViewState extends State<HomeView> {
                           children: [
                             categoryButton(
                               context,
-                              '동료찾기',
+                              '동료 찾기',
                               const SelectedCategory(
                                   category: HomeCategory.findTeam),
                               state.status,
                             ),
                             categoryButton(
                               context,
-                              '시너지',
+                              '듀오 찾기',
                               const SelectedCategory(
-                                  category: HomeCategory.synergyHelper),
+                                  category: HomeCategory.findDuo),
                               state.status,
                             ),
                             categoryButton(
@@ -125,8 +126,7 @@ class _HomeViewState extends State<HomeView> {
               ),
               SizedBox(height: 20),
               if (state.status == HomeCategory.findTeam) const FindTeamView(),
-              if (state.status == HomeCategory.synergyHelper)
-                const SynergyHelperView(),
+              if (state.status == HomeCategory.findDuo) const FindDuoView(),
               if (state.status == HomeCategory.profile) const MyProfileView(),
               if (state.status == HomeCategory.writing) const WritingView(),
             ],

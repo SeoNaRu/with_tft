@@ -149,3 +149,5 @@ class SaveUserProfile extends HomeEvent {
       required this.puuid,
       required this.description});
 }
+
+class GetAllUserList extends HomeEvent {}

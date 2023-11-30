@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:with_tft/home/model/article_model.dart';
 import 'package:with_tft/home/model/user_profile_model.dart';
 
-enum HomeCategory { findTeam, synergyHelper, profile, writing }
+enum HomeCategory { findTeam, findDuo, synergyHelper, profile, writing }
 
 enum GameTypes { normal, ranked, turbo, doubleUp }
 

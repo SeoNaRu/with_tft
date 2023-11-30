@@ -4,9 +4,8 @@ class Profile {
   final String lineTag;
   final String isUserDetailVisible;
   final String userDescription;
-  final String gameTypesStatus;
-  final String voiceStatus;
-  final String personnelStatus;
+
+  final String tier;
   final String ageCategory;
   final String gender;
   final String myVoiceCheck;
@@ -20,9 +19,7 @@ class Profile {
     lineTag: '',
     isUserDetailVisible: '',
     userDescription: '',
-    gameTypesStatus: '',
-    voiceStatus: '',
-    personnelStatus: '',
+    tier: '',
     ageCategory: '',
     gender: '',
     myVoiceCheck: '',
@@ -37,9 +34,7 @@ class Profile {
     required this.lineTag,
     required this.isUserDetailVisible,
     required this.userDescription,
-    required this.gameTypesStatus,
-    required this.voiceStatus,
-    required this.personnelStatus,
+    required this.tier,
     required this.ageCategory,
     required this.gender,
     required this.myVoiceCheck,
@@ -55,9 +50,7 @@ class Profile {
       'lineTag': lineTag,
       'isUserDetailVisible': isUserDetailVisible,
       'userDescription': userDescription,
-      'gameTypesStatus': gameTypesStatus,
-      'voiceStatus': voiceStatus,
-      'personnelStatus': personnelStatus,
+      'tier': tier,
       'ageCategory': ageCategory,
       'gender': gender,
       'myVoiceCheck': myVoiceCheck,
@@ -72,14 +65,12 @@ class Profile {
       puuid: map['puuid'] ?? '',
       nickName: map['nickName'] ?? '',
       lineTag: map['lineTag'] ?? '',
-      isUserDetailVisible: map['uservVisible'] ?? '',
-      userDescription: map['userDescription'] ?? '',
-      gameTypesStatus: map['gameTypesStatus'] ?? '',
-      voiceStatus: map['voiceStatus'] ?? '',
-      personnelStatus: map['personnelStatus'] ?? '',
-      ageCategory: map['ageCategory'] ?? '',
+      tier: map['tier'] ?? '',
+      isUserDetailVisible: map['visible'] ?? '',
+      userDescription: map['description'] ?? '',
+      ageCategory: map['age'] ?? '',
       gender: map['gender'] ?? '',
-      myVoiceCheck: map['myVoiceCheck'] ?? '',
+      myVoiceCheck: map['myVoice'] ?? '',
       playStyle: map['playStyle'] ?? '',
       duoType: map['duoType'] ?? '',
       playTime: map['playTime'] ?? '',
@@ -92,9 +83,7 @@ class Profile {
     String? lineTag,
     String? isUserDetailVisible,
     String? userDescription,
-    String? gameTypesStatus,
-    String? voiceStatus,
-    String? personnelStatus,
+    String? tier,
     String? ageCategory,
     String? gender,
     String? myVoiceCheck,
@@ -108,9 +97,7 @@ class Profile {
       lineTag: lineTag ?? this.lineTag,
       isUserDetailVisible: isUserDetailVisible ?? this.isUserDetailVisible,
       userDescription: userDescription ?? this.userDescription,
-      gameTypesStatus: gameTypesStatus ?? this.gameTypesStatus,
-      voiceStatus: voiceStatus ?? this.voiceStatus,
-      personnelStatus: personnelStatus ?? this.personnelStatus,
+      tier: tier ?? this.tier,
       ageCategory: ageCategory ?? this.ageCategory,
       gender: gender ?? this.gender,
       myVoiceCheck: myVoiceCheck ?? this.myVoiceCheck,

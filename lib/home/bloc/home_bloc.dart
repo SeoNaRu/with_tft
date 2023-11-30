@@ -30,6 +30,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<SelectedPlayTime>(_onSelectedPlayTime);
     on<SaveUserProfile>(_onSaveUserProfile);
     on<SelectedUserVisible>(_onSelectedUserVisible);
+    on<GetAllUserList>(_onGetAllUserList);
   }
   FutureOr<void> _onSelectedCategory(SelectedCategory event, emit) async {
     emit(state.copyWith(status: event.category));
@@ -130,17 +131,25 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       "playStyle": state.stringPlayStyle,
       "duoType": state.stringDuoType,
       "playTime": state.stringPlayTime,
-      "visble": state.stringIsUserDetailVisible,
+      "visible": state.stringIsUserDetailVisible,
       "description": event.description,
     };
     dynamic response =
         await _authenticationRepository.testPost(MyEnv.testIp, '/user', body);
 
-    print('유저 정보 저장 $response');
+    List<Profile> users =
+        response.map<Profile>((e) => Profile.fromMap(e)).toList();
 
-    // List<Profile> users =
-    //     response.map<Profile>((e) => Profile.fromMap(e)).toList();
+    emit(state.copyWith(userProfileList: users));
+  }
 
-    // emit(state.copyWith(userProfileList: users));
+  FutureOr<void> _onGetAllUserList(GetAllUserList event, emit) async {
+    dynamic response =
+        await _authenticationRepository.testGet(MyEnv.testIp, '/user');
+
+    List<Profile> users =
+        response.map<Profile>((e) => Profile.fromMap(e)).toList();
+
+    emit(state.copyWith(userProfileList: users));
   }
 }

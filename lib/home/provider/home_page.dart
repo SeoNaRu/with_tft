@@ -18,7 +18,9 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    context.read<HomeBloc>().add(GetArticleList());
+    context.read<HomeBloc>()
+      ..add(GetArticleList())
+      ..add(GetAllUserList());
     return const HomeView();
   }
 }

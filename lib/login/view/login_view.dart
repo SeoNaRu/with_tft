@@ -16,6 +16,7 @@ class LoginView extends StatefulWidget {
 class _LoginViewState extends State<LoginView> {
   TextEditingController nickNameController = TextEditingController();
   TextEditingController lineTagController = TextEditingController(text: 'KR1');
+
   @override
   Widget build(BuildContext context) {
     return BlocListener<LoginBloc, LoginState>(
@@ -85,7 +86,7 @@ class _LoginViewState extends State<LoginView> {
                         borderRadius: BorderRadius.all(Radius.circular(10.0)),
                       ),
                     ),
-                    keyboardType: TextInputType.emailAddress,
+                    keyboardType: TextInputType.text,
                   ),
                   const SizedBox(
                     height: 15,
@@ -108,7 +109,7 @@ class _LoginViewState extends State<LoginView> {
                         borderRadius: BorderRadius.all(Radius.circular(10.0)),
                       ),
                     ),
-                    keyboardType: TextInputType.emailAddress,
+                    keyboardType: TextInputType.text,
                   ),
                   const SizedBox(
                     height: 20,
