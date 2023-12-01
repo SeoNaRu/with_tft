@@ -28,9 +28,6 @@ class _FindTeamViewState extends State<FindTeamView> {
           controller: _scrollController,
           itemCount: state.articles.length,
           itemBuilder: (context, index) {
-            final reversedIndex = state.articles.length - 1 - index;
-            // final reversedIndex = index;
-
             return Align(
               alignment: Alignment.center,
               child: Container(
@@ -80,21 +77,18 @@ class _FindTeamViewState extends State<FindTeamView> {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Text(
-                            '닉네임 : ${state.articles[reversedIndex].nickName}',
+                            '닉네임 : ${state.articles[index].nickName}',
                             style: Theme.of(context).textTheme.bodyMedium,
                           ),
-                          Text(
-                              '라인 태그 : #${state.articles[reversedIndex].lineTag}',
+                          Text('라인 태그 : #${state.articles[index].lineTag}',
                               style: Theme.of(context).textTheme.bodyMedium),
-                          Text('티어 : ${state.articles[reversedIndex].tier}',
+                          Text('티어 : ${state.articles[index].tier}',
                               style: Theme.of(context).textTheme.bodyMedium),
-                          Text(
-                              '게임 종류 : ${state.articles[reversedIndex].gameType}',
+                          Text('게임 종류 : ${state.articles[index].gameType}',
                               style: Theme.of(context).textTheme.bodyMedium),
-                          Text('음성 : ${state.articles[reversedIndex].vocie}',
+                          Text('음성 : ${state.articles[index].vocie}',
                               style: Theme.of(context).textTheme.bodyMedium),
-                          Text(
-                              '구하는 인원 : ${state.articles[reversedIndex].personel}',
+                          Text('구하는 인원 : ${state.articles[index].personel}',
                               style: Theme.of(context).textTheme.bodyMedium),
                         ],
                       )

@@ -28,9 +28,6 @@ class _FindDuoViewState extends State<FindDuoView> {
           controller: _scrollController,
           itemCount: state.userProfileList.length,
           itemBuilder: (context, index) {
-            final reversedIndex = state.userProfileList.length - 1 - index;
-            // final reversedIndex = index;
-
             return Container(
               width: double.infinity,
               margin: EdgeInsets.only(left: 20, right: 20, bottom: 16),
@@ -59,9 +56,9 @@ class _FindDuoViewState extends State<FindDuoView> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(state.userProfileList[reversedIndex].nickName),
+                        Text(state.userProfileList[index].nickName),
                         Text(
-                          ' #${state.userProfileList[reversedIndex].lineTag}',
+                          ' #${state.userProfileList[index].lineTag}',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Colors.grey,
@@ -89,7 +86,7 @@ class _FindDuoViewState extends State<FindDuoView> {
                     SizedBox(
                       height: 6,
                     ),
-                    Text(state.userProfileList[reversedIndex].userDescription),
+                    Text(state.userProfileList[index].userDescription),
                     SizedBox(
                       height: 10,
                     ),
@@ -104,15 +101,15 @@ class _FindDuoViewState extends State<FindDuoView> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                  '나이 : ${state.userProfileList[reversedIndex].ageCategory}',
+                                  '나이 : ${state.userProfileList[index].ageCategory}',
                                   style:
                                       Theme.of(context).textTheme.bodyMedium),
                               Text(
-                                  '성별 : ${state.userProfileList[reversedIndex].gender}',
+                                  '성별 : ${state.userProfileList[index].gender}',
                                   style:
                                       Theme.of(context).textTheme.bodyMedium),
                               Text(
-                                  '음성 : ${state.userProfileList[reversedIndex].myVoiceCheck}',
+                                  '음성 : ${state.userProfileList[index].myVoiceCheck}',
                                   style:
                                       Theme.of(context).textTheme.bodyMedium),
                             ],
@@ -122,15 +119,15 @@ class _FindDuoViewState extends State<FindDuoView> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                  '플레이 : ${state.userProfileList[reversedIndex].playStyle}',
+                                  '플레이 : ${state.userProfileList[index].playStyle}',
                                   style:
                                       Theme.of(context).textTheme.bodyMedium),
                               Text(
-                                  '플레이 시간: ${state.userProfileList[reversedIndex].playTime}',
+                                  '플레이 시간: ${state.userProfileList[index].playTime}',
                                   style:
                                       Theme.of(context).textTheme.bodyMedium),
                               Text(
-                                  '듀오 스타일: ${state.userProfileList[reversedIndex].duoType}',
+                                  '듀오 스타일: ${state.userProfileList[index].duoType}',
                                   style:
                                       Theme.of(context).textTheme.bodyMedium),
                             ],

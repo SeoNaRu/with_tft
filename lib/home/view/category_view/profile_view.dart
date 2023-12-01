@@ -21,13 +21,12 @@ class MyProfileView extends StatefulWidget {
 }
 
 class _MyProfileViewState extends State<MyProfileView> {
+  TextEditingController descriptionController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<HomeBloc, HomeState>(builder: (context, state) {
       final loginBloc = BlocProvider.of<LoginBloc>(context);
-      final descriptionController = TextEditingController();
-      // descriptionController.selection =
-      //     TextSelection.collapsed(offset: descriptionController.text.length);
       return Expanded(
         child: SingleChildScrollView(
           child: Column(
@@ -97,8 +96,7 @@ class _MyProfileViewState extends State<MyProfileView> {
                         maxLength: 20,
                         decoration: const InputDecoration(
                           // labelText: '한줄 소개',
-                          hintText: '한줄 소개 해주세요.!(20 글자)',
-                          counterText: '',
+                          hintText: '한줄 소개 해주세요.!(20 글자) ',
                           labelStyle: TextStyle(color: Colors.black),
                           focusedBorder: OutlineInputBorder(
                             borderRadius:
