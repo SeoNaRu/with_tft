@@ -14,6 +14,33 @@ class FindDuoView extends StatefulWidget {
 class _FindDuoViewState extends State<FindDuoView> {
   late ScrollController _scrollController;
 
+  Color getTierColor(String tier) {
+    switch (tier) {
+      case 'IRON':
+        return const Color(0xFF3C2D2B);
+      case 'BRONZE':
+        return const Color(0xFF593D38);
+      case 'SILVER':
+        return const Color(0xFFB4B4B4);
+      case 'GOLD':
+        return const Color(0xFFFFD700);
+      case 'PLATINUM':
+        return const Color(0xFF23AFC7);
+      case 'EMERALD':
+        return const Color(0xFF008000);
+      case 'DIAMOND':
+        return const Color(0xFF1E90FF);
+      case 'MASTER':
+        return const Color(0xFF9932CC);
+      case 'GRANDMASTER':
+        return const Color(0xFF9F2B24);
+      case 'CHALLENGER':
+        return const Color(0xFF53D3EC);
+      default:
+        return const Color(0xFF000000);
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -34,7 +61,7 @@ class _FindDuoViewState extends State<FindDuoView> {
               decoration: BoxDecoration(
                 color: Colors.white,
                 border: Border.all(
-                  color: Colors.black,
+                  color: getTierColor(state.userProfileList[index].tier),
                   width: 2.0,
                 ),
                 borderRadius: BorderRadius.all(
@@ -42,7 +69,8 @@ class _FindDuoViewState extends State<FindDuoView> {
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.8),
+                    color: getTierColor(state.userProfileList[index].tier)
+                        .withOpacity(0.8),
                     spreadRadius: 2, // 그림자 크기
                     blurRadius: 0, // 블러
                     offset: Offset(5, 6), // 그림자의 위치 (가로, 세로)
@@ -76,7 +104,8 @@ class _FindDuoViewState extends State<FindDuoView> {
                         decoration: BoxDecoration(
                           color: Colors.white,
                           border: Border.all(
-                            color: Colors.black,
+                            color:
+                                getTierColor(state.userProfileList[index].tier),
                             width: 2.0,
                           ),
                           borderRadius: BorderRadius.all(

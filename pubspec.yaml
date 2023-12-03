@@ -27,8 +27,11 @@ dev_dependencies:
 
 
 flutter:
-
   uses-material-design: true
+  fonts:
+    - family: BeaufortforLOL
+      fonts:
+        - asset: fonts/BeaufortforLOL-Heavy.ttf
   assets:
     - .env
 

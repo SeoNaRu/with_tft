@@ -37,7 +37,7 @@ Widget categoryButton(BuildContext context, String category, HomeEvent event,
       child: Text(
         category,
         style: TextStyle(
-          fontWeight: FontWeight.bold,
+          fontFamily: 'BeaufortforLOL',
           color: isSelected ? Colors.white : Colors.black,
         ),
       ),

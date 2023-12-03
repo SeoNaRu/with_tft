@@ -30,7 +30,7 @@ class _HomeViewState extends State<HomeView> {
             title: Text(
               'WITH TFT',
               style: TextStyle(
-                fontWeight: FontWeight.bold,
+                fontFamily: 'BeaufortforLOL',
                 color: Colors.black,
                 fontSize: 20,
               ),
@@ -38,16 +38,13 @@ class _HomeViewState extends State<HomeView> {
             actions: [
               Padding(
                 padding: const EdgeInsets.only(right: 15),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(50.0),
-                  child: Text(
-                    BlocProvider.of<LoginBloc>(context).state.user.name,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      overflow: TextOverflow.ellipsis,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
+                child: Text(
+                  BlocProvider.of<LoginBloc>(context).state.user.name,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    overflow: TextOverflow.ellipsis,
+                    fontFamily: 'BeaufortforLOL',
+                    color: Colors.black,
                   ),
                 ),
               ),
