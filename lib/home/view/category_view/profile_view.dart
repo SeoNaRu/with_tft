@@ -650,13 +650,29 @@ class _MyProfileViewState extends State<MyProfileView> {
                         ),
                         ElevatedButton(
                           onPressed: () {
-                            context.read<HomeBloc>().add((SaveUserProfile(
-                                  nickName: loginBloc.state.user.name,
-                                  lineTag: loginBloc.state.user.lingTag,
-                                  puuid: loginBloc.state.user.puuid,
-                                  description: descriptionController.text,
-                                  tier: loginBloc.state.tier.tier,
-                                )));
+                            if (descriptionController.text == '') {
+                              const snackBar = SnackBar(
+                                content: Text(
+                                  '한줄 소개 작성해주세요!',
+                                  style: TextStyle(color: Colors.white),
+                                  textAlign: TextAlign.center,
+                                ),
+                                backgroundColor: Color(0xFF1b1b23),
+                                behavior: SnackBarBehavior.floating,
+                              );
+                              ScaffoldMessenger.of(context)
+                                  .hideCurrentSnackBar();
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(snackBar);
+                            } else {
+                              context.read<HomeBloc>().add((SaveUserProfile(
+                                    nickName: loginBloc.state.user.name,
+                                    lineTag: loginBloc.state.user.lingTag,
+                                    puuid: loginBloc.state.user.puuid,
+                                    description: descriptionController.text,
+                                    tier: loginBloc.state.tier.tier,
+                                  )));
+                            }
                           },
                           style: ButtonStyle(
                             backgroundColor:

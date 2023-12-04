@@ -139,6 +139,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         response.map<Profile>((e) => Profile.fromMap(e)).toList();
 
     emit(state.copyWith(userProfileList: users));
+    emit(state.copyWith(status: HomeCategory.findDuo));
   }
 
   FutureOr<void> _onGetAllUserList(GetAllUserList event, emit) async {
