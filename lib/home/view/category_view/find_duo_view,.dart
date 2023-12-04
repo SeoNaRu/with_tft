@@ -137,10 +137,15 @@ class _FindDuoViewState extends State<FindDuoView> {
                                   '성별 : ${state.userProfileList[index].gender}',
                                   style:
                                       Theme.of(context).textTheme.bodyMedium),
-                              Text(
-                                  '음성 : ${state.userProfileList[index].myVoiceCheck}',
-                                  style:
-                                      Theme.of(context).textTheme.bodyMedium),
+                              state.userProfileList[index].myVoiceCheck
+                                  ? Text('음성 : ON',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium)
+                                  : Text('음성 : OFF',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium),
                             ],
                           ),
                           Column(

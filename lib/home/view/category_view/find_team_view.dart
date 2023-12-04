@@ -86,8 +86,19 @@ class _FindTeamViewState extends State<FindTeamView> {
                               style: Theme.of(context).textTheme.bodyMedium),
                           Text('게임 종류 : ${state.articles[index].gameType}',
                               style: Theme.of(context).textTheme.bodyMedium),
-                          Text('음성 : ${state.articles[index].vocie}',
-                              style: Theme.of(context).textTheme.bodyMedium),
+                          Row(
+                            children: [
+                              state.articles[index].vocie
+                                  ? Text('음성 : ON',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium)
+                                  : Text('음성 : OFF',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium),
+                            ],
+                          ),
                           Text('구하는 인원 : ${state.articles[index].personel}',
                               style: Theme.of(context).textTheme.bodyMedium),
                         ],

@@ -42,8 +42,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
 
   FutureOr<void> _onSelectedVocieCheck(SelectedVocieCheck event, emit) async {
-    emit(state.copyWith(stringVoiceStatus: event.stringVoiceStatus));
-    emit(state.copyWith(voiceStatus: event.voiceCheck));
+    emit(state.copyWith(voice: event.voiceCheck));
+    // emit(state.copyWith(voiceStatus: event.voiceCheck));
   }
 
   FutureOr<void> _onSelectedPersonnelCheck(
@@ -65,7 +65,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   FutureOr<void> _onSelectedMyVocieCheck(
       SelectedMyVocieCheck event, emit) async {
-    emit(state.copyWith(stringMyVoiceCheck: event.stringMyVoiceCheck));
     emit(state.copyWith(myVoiceCheck: event.myVoiceCheck));
   }
 
@@ -85,7 +84,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
 
   FutureOr<void> _onSelectedUserVisible(SelectedUserVisible event, emit) async {
-    emit(state.copyWith(stringIsUserDetailVisible: event.stringUserVisible));
     emit(state.copyWith(isUserDetailVisible: event.userVisible));
   }
 
@@ -96,7 +94,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       "lineTag": event.lineTag,
       "tier": event.tier,
       "gameType": state.stringGameTypesStatus,
-      "vocie": state.stringVoiceStatus,
+      "vocie": state.voice,
       "personel": state.stringPersonnelStatus,
     };
     dynamic response = await _authenticationRepository.testPost(
@@ -127,11 +125,11 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       "tier": event.tier,
       "age": state.stringAgeCategory,
       "gender": state.stringGender,
-      "myVoice": state.stringMyVoiceCheck,
+      "myVoice": state.myVoiceCheck,
       "playStyle": state.stringPlayStyle,
       "duoType": state.stringDuoType,
       "playTime": state.stringPlayTime,
-      "visible": state.stringIsUserDetailVisible,
+      "visible": state.isUserDetailVisible,
       "description": event.description,
     };
     dynamic response =

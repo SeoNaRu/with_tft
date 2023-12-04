@@ -136,9 +136,15 @@ class _MyProfileViewState extends State<MyProfileView> {
                                 Text('성별 : ${state.stringGender}',
                                     style:
                                         Theme.of(context).textTheme.bodyMedium),
-                                Text('음성 : ${state.stringMyVoiceCheck}',
-                                    style:
-                                        Theme.of(context).textTheme.bodyMedium),
+                                state.myVoiceCheck
+                                    ? Text('음성 : ON',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium)
+                                    : Text('음성 : OFF',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium),
                               ],
                             ),
                             Column(
@@ -343,16 +349,16 @@ class _MyProfileViewState extends State<MyProfileView> {
                                 context,
                                 'ON',
                                 const SelectedMyVocieCheck(
-                                    myVoiceCheck: MyVoiceCheck.on,
-                                    stringMyVoiceCheck: "ON"),
+                                  myVoiceCheck: true,
+                                ),
                                 state.myVoiceCheck),
                             myVoiceCheckButton(
                                 context,
                                 'OFF',
                                 const SelectedMyVocieCheck(
-                                    myVoiceCheck: MyVoiceCheck.off,
-                                    stringMyVoiceCheck: "OFF"),
-                                state.myVoiceCheck),
+                                  myVoiceCheck: false,
+                                ),
+                                !state.myVoiceCheck),
                           ],
                         ),
                         SizedBox(
@@ -627,16 +633,16 @@ class _MyProfileViewState extends State<MyProfileView> {
                                 context,
                                 'ON',
                                 const SelectedUserVisible(
-                                    userVisible: UserDetailVisible.on,
-                                    stringUserVisible: "ON"),
+                                  userVisible: true,
+                                ),
                                 state.isUserDetailVisible),
                             userVisibleButton(
                                 context,
                                 'OFF',
                                 const SelectedUserVisible(
-                                    userVisible: UserDetailVisible.off,
-                                    stringUserVisible: "OFF"),
-                                state.isUserDetailVisible),
+                                  userVisible: false,
+                                ),
+                                !state.isUserDetailVisible),
                           ],
                         ),
                         SizedBox(

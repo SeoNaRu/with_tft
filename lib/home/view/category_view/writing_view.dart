@@ -153,17 +153,13 @@ class _WritingViewState extends State<WritingView> {
                         voiceCheckButton(
                             context,
                             'ON',
-                            const SelectedVocieCheck(
-                                voiceCheck: VoiceCheck.on,
-                                stringVoiceStatus: "ON"),
-                            state.voiceStatus),
+                            const SelectedVocieCheck(voiceCheck: true),
+                            state.voice),
                         voiceCheckButton(
                             context,
                             'OFF',
-                            const SelectedVocieCheck(
-                                voiceCheck: VoiceCheck.off,
-                                stringVoiceStatus: "OFF"),
-                            state.voiceStatus),
+                            const SelectedVocieCheck(voiceCheck: false),
+                            !state.voice),
                       ],
                     ),
                     SizedBox(

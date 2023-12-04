@@ -5,20 +5,7 @@ import 'package:with_tft/home/bloc/home_event.dart';
 import 'package:with_tft/home/bloc/home_state.dart';
 
 Widget userVisibleButton(BuildContext context, String category, HomeEvent event,
-    UserDetailVisible userDetailVisible) {
-  UserDetailVisible userDetailVisibleEnum;
-  switch (category) {
-    case 'ON':
-      userDetailVisibleEnum = UserDetailVisible.on;
-      break;
-    case 'OFF':
-      userDetailVisibleEnum = UserDetailVisible.off;
-      break;
-    default:
-      userDetailVisibleEnum = UserDetailVisible.off;
-  }
-
-  bool isSelected = userDetailVisibleEnum == userDetailVisible;
+    bool userDetailVisible) {
   return Flexible(
     child: GestureDetector(
       onTap: () {
@@ -32,7 +19,7 @@ Widget userVisibleButton(BuildContext context, String category, HomeEvent event,
             color: Colors.black,
             width: 2.0,
           ),
-          color: isSelected ? Colors.black : Colors.transparent,
+          color: userDetailVisible ? Colors.black : Colors.transparent,
           borderRadius: BorderRadius.all(
             Radius.circular(15.0),
           ),
@@ -42,7 +29,7 @@ Widget userVisibleButton(BuildContext context, String category, HomeEvent event,
             category,
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              color: isSelected ? Colors.white : Colors.black,
+              color: userDetailVisible ? Colors.white : Colors.black,
             ),
           ),
         ),

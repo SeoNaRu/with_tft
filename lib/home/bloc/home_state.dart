@@ -6,15 +6,11 @@ enum HomeCategory { findTeam, findDuo, synergyHelper, profile, writing }
 
 enum GameTypes { normal, ranked, turbo, doubleUp }
 
-enum VoiceCheck { on, off }
-
 enum PersonnelCheck { one, two, three, four, five, six, seven }
 
 enum AgeCategory { adult, minor, secret }
 
 enum Gender { male, female, secret }
-
-enum MyVoiceCheck { on, off }
 
 enum PlayStyle { fun, faceKeeping, reroll, levelUp }
 
@@ -31,23 +27,19 @@ enum PlayTime { morning, lunch, night, weekday, weekend, random }
 
 enum Interest { skillStudy, casualChat, streamer, tournamentWatch }
 
-enum UserDetailVisible { on, off }
-
 class HomeState extends Equatable {
   final HomeCategory status;
   final List<Profile> userProfileList;
   final GameTypes gameTypesStatus;
   final String stringGameTypesStatus;
-  final VoiceCheck voiceStatus;
-  final String stringVoiceStatus;
+  final bool voice;
   final PersonnelCheck personnelStatus;
   final String stringPersonnelStatus;
   final AgeCategory ageCategory;
   final String stringAgeCategory;
   final Gender gender;
   final String stringGender;
-  final MyVoiceCheck myVoiceCheck;
-  final String stringMyVoiceCheck;
+  final bool myVoiceCheck;
   final PlayStyle playStyle;
   final String stringPlayStyle;
   final DuoType duoType;
@@ -56,25 +48,22 @@ class HomeState extends Equatable {
   final String stringPlayTime;
   final Interest interest;
   final String userDescription;
-  final UserDetailVisible isUserDetailVisible;
-  final String stringIsUserDetailVisible;
+  final bool isUserDetailVisible;
   final List<ArticleModel> articles;
 
   const HomeState({
     required this.status,
     required this.gameTypesStatus,
     required this.userProfileList,
-    required this.voiceStatus,
+    required this.voice,
     required this.personnelStatus,
     required this.stringGameTypesStatus,
-    required this.stringVoiceStatus,
     required this.stringPersonnelStatus,
     required this.ageCategory,
     required this.stringAgeCategory,
     required this.gender,
     required this.stringGender,
     required this.myVoiceCheck,
-    required this.stringMyVoiceCheck,
     required this.playStyle,
     required this.stringPlayStyle,
     required this.duoType,
@@ -84,7 +73,6 @@ class HomeState extends Equatable {
     required this.interest,
     required this.userDescription,
     required this.isUserDetailVisible,
-    required this.stringIsUserDetailVisible,
     required this.articles,
   });
 
@@ -93,17 +81,15 @@ class HomeState extends Equatable {
       status: HomeCategory.findTeam,
       userProfileList: [],
       gameTypesStatus: GameTypes.normal,
-      voiceStatus: VoiceCheck.off,
+      voice: false,
       personnelStatus: PersonnelCheck.one,
       stringGameTypesStatus: '비밀',
-      stringVoiceStatus: 'OFF',
       stringPersonnelStatus: '1',
       ageCategory: AgeCategory.secret,
       stringAgeCategory: '비밀',
       gender: Gender.secret,
       stringGender: '비밀',
-      myVoiceCheck: MyVoiceCheck.off,
-      stringMyVoiceCheck: 'OFF',
+      myVoiceCheck: false,
       playStyle: PlayStyle.fun,
       stringPlayStyle: '즐겜',
       duoType: DuoType.gamingParty,
@@ -112,15 +98,14 @@ class HomeState extends Equatable {
       stringPlayTime: '랜덤',
       interest: Interest.skillStudy,
       userDescription: '',
-      isUserDetailVisible: UserDetailVisible.off,
-      stringIsUserDetailVisible: 'OFF',
+      isUserDetailVisible: false,
       articles: [],
     );
   }
 
   @override
   String toString() {
-    return 'HomeState{status: $status gameTypesStatus:$gameTypesStatus voiceStatus:$voiceStatus personnelStatus:$personnelStatus stringGameTypesStatus:$stringGameTypesStatus stringVoiceStatus:$stringVoiceStatus stringPersonnelStatus:$stringPersonnelStatus ageCategory:$ageCategory gender:$gender playStyle:$playStyle duoType:$duoType playTime:$playTime interest:$interest articles:$articles ageCategory:$ageCategory userProfileList:$userProfileList}';
+    return 'HomeState{status: $status gameTypesStatus:$gameTypesStatus  personnelStatus:$personnelStatus stringGameTypesStatus:$stringGameTypesStatus  stringPersonnelStatus:$stringPersonnelStatus ageCategory:$ageCategory gender:$gender playStyle:$playStyle duoType:$duoType playTime:$playTime interest:$interest articles:$articles ageCategory:$ageCategory userProfileList:$userProfileList}';
   }
 
   @override
@@ -128,17 +113,15 @@ class HomeState extends Equatable {
         status,
         userProfileList,
         gameTypesStatus,
-        voiceStatus,
+        voice,
         personnelStatus,
         stringGameTypesStatus,
-        stringVoiceStatus,
         stringPersonnelStatus,
         ageCategory,
         stringAgeCategory,
         gender,
         stringGender,
         myVoiceCheck,
-        stringMyVoiceCheck,
         playStyle,
         stringPlayStyle,
         duoType,
@@ -148,7 +131,6 @@ class HomeState extends Equatable {
         interest,
         userDescription,
         isUserDetailVisible,
-        stringIsUserDetailVisible,
         articles,
       ];
 
@@ -156,17 +138,15 @@ class HomeState extends Equatable {
     HomeCategory? status,
     List<Profile>? userProfileList,
     GameTypes? gameTypesStatus,
-    VoiceCheck? voiceStatus,
+    bool? voice,
     PersonnelCheck? personnelStatus,
     String? stringGameTypesStatus,
-    String? stringVoiceStatus,
     String? stringPersonnelStatus,
     AgeCategory? ageCategory,
     String? stringAgeCategory,
     Gender? gender,
     String? stringGender,
-    MyVoiceCheck? myVoiceCheck,
-    String? stringMyVoiceCheck,
+    bool? myVoiceCheck,
     PlayStyle? playStyle,
     String? stringPlayStyle,
     DuoType? duoType,
@@ -175,19 +155,17 @@ class HomeState extends Equatable {
     String? stringPlayTime,
     Interest? interest,
     String? userDescription,
-    UserDetailVisible? isUserDetailVisible,
-    String? stringIsUserDetailVisible,
+    bool? isUserDetailVisible,
     List<ArticleModel>? articles,
   }) {
     return HomeState(
       status: status ?? this.status,
       gameTypesStatus: gameTypesStatus ?? this.gameTypesStatus,
       userProfileList: userProfileList ?? this.userProfileList,
-      voiceStatus: voiceStatus ?? this.voiceStatus,
+      voice: voice ?? this.voice,
       personnelStatus: personnelStatus ?? this.personnelStatus,
       stringGameTypesStatus:
           stringGameTypesStatus ?? this.stringGameTypesStatus,
-      stringVoiceStatus: stringVoiceStatus ?? this.stringVoiceStatus,
       stringPersonnelStatus:
           stringPersonnelStatus ?? this.stringPersonnelStatus,
       ageCategory: ageCategory ?? this.ageCategory,
@@ -195,7 +173,6 @@ class HomeState extends Equatable {
       gender: gender ?? this.gender,
       stringGender: stringGender ?? this.stringGender,
       myVoiceCheck: myVoiceCheck ?? this.myVoiceCheck,
-      stringMyVoiceCheck: stringMyVoiceCheck ?? this.stringMyVoiceCheck,
       playStyle: playStyle ?? this.playStyle,
       stringPlayStyle: stringPlayStyle ?? this.stringPlayStyle,
       duoType: duoType ?? this.duoType,
@@ -205,8 +182,6 @@ class HomeState extends Equatable {
       interest: interest ?? this.interest,
       userDescription: userDescription ?? this.userDescription,
       isUserDetailVisible: isUserDetailVisible ?? this.isUserDetailVisible,
-      stringIsUserDetailVisible:
-          stringIsUserDetailVisible ?? this.stringIsUserDetailVisible,
       articles: articles ?? this.articles,
     );
   }

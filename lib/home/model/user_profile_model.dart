@@ -2,13 +2,13 @@ class Profile {
   final String puuid;
   final String nickName;
   final String lineTag;
-  final String isUserDetailVisible;
+  final bool isUserDetailVisible;
   final String userDescription;
 
   final String tier;
   final String ageCategory;
   final String gender;
-  final String myVoiceCheck;
+  final bool myVoiceCheck;
   final String playStyle;
   final String duoType;
   final String playTime;
@@ -17,12 +17,12 @@ class Profile {
     puuid: '',
     nickName: '',
     lineTag: '',
-    isUserDetailVisible: '',
-    userDescription: '',
+    isUserDetailVisible: false,
+    userDescription: ' ',
     tier: '',
     ageCategory: '',
     gender: '',
-    myVoiceCheck: '',
+    myVoiceCheck: false,
     playStyle: '',
     duoType: '',
     playTime: '',
@@ -66,11 +66,11 @@ class Profile {
       nickName: map['nickName'] ?? '',
       lineTag: map['lineTag'] ?? '',
       tier: map['tier'] ?? '',
-      isUserDetailVisible: map['visible'] ?? '',
+      isUserDetailVisible: map['visible'] ?? false,
       userDescription: map['description'] ?? '',
       ageCategory: map['age'] ?? '',
       gender: map['gender'] ?? '',
-      myVoiceCheck: map['myVoice'] ?? '',
+      myVoiceCheck: map['myVoice'] ?? false,
       playStyle: map['playStyle'] ?? '',
       duoType: map['duoType'] ?? '',
       playTime: map['playTime'] ?? '',
@@ -81,12 +81,12 @@ class Profile {
     String? puuid,
     String? nickName,
     String? lineTag,
-    String? isUserDetailVisible,
+    bool? isUserDetailVisible,
     String? userDescription,
     String? tier,
     String? ageCategory,
     String? gender,
-    String? myVoiceCheck,
+    bool? myVoiceCheck,
     String? playStyle,
     String? duoType,
     String? playTime,

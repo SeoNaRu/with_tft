@@ -29,12 +29,10 @@ class SelectedGameType extends HomeEvent {
 }
 
 class SelectedVocieCheck extends HomeEvent {
-  final VoiceCheck voiceCheck;
-  final String stringVoiceStatus;
+  final bool voiceCheck;
 
   const SelectedVocieCheck({
     required this.voiceCheck,
-    required this.stringVoiceStatus,
   });
 }
 
@@ -87,12 +85,10 @@ class SelectedGender extends HomeEvent {
 }
 
 class SelectedMyVocieCheck extends HomeEvent {
-  final MyVoiceCheck myVoiceCheck;
-  final String stringMyVoiceCheck;
+  final bool myVoiceCheck;
 
   const SelectedMyVocieCheck({
     required this.myVoiceCheck,
-    required this.stringMyVoiceCheck,
   });
 }
 
@@ -127,12 +123,10 @@ class SelectedPlayTime extends HomeEvent {
 }
 
 class SelectedUserVisible extends HomeEvent {
-  final UserDetailVisible userVisible;
-  final String stringUserVisible;
+  final bool userVisible;
 
   const SelectedUserVisible({
     required this.userVisible,
-    required this.stringUserVisible,
   });
 }
 

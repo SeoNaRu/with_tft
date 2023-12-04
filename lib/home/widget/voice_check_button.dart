@@ -5,20 +5,19 @@ import 'package:with_tft/home/bloc/home_event.dart';
 import 'package:with_tft/home/bloc/home_state.dart';
 
 Widget voiceCheckButton(BuildContext context, String category, HomeEvent event,
-    VoiceCheck vocieStatus) {
-  VoiceCheck vocieCheckEnum;
-  switch (category) {
-    case 'ON':
-      vocieCheckEnum = VoiceCheck.on;
-      break;
-    case 'OFF':
-      vocieCheckEnum = VoiceCheck.off;
-      break;
-    default:
-      vocieCheckEnum = VoiceCheck.off;
-  }
+    bool vocieCheckEnum) {
+  // switch (category) {
+  //   case 'ON':
+  //     vocieCheckEnum = VoiceCheck.on;
+  //     break;
+  //   case 'OFF':
+  //     vocieCheckEnum = VoiceCheck.off;
+  //     break;
+  //   default:
+  //     vocieCheckEnum = VoiceCheck.off;
+  // }
 
-  bool isSelected = vocieCheckEnum == vocieStatus;
+  // bool isSelected = vocieCheckEnum == vocieStatus;
   return Flexible(
     child: GestureDetector(
       onTap: () {
@@ -32,7 +31,7 @@ Widget voiceCheckButton(BuildContext context, String category, HomeEvent event,
             color: Colors.black,
             width: 2.0,
           ),
-          color: isSelected ? Colors.black : Colors.transparent,
+          color: vocieCheckEnum ? Colors.black : Colors.transparent,
           borderRadius: BorderRadius.all(
             Radius.circular(15.0),
           ),
@@ -42,7 +41,7 @@ Widget voiceCheckButton(BuildContext context, String category, HomeEvent event,
             category,
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              color: isSelected ? Colors.white : Colors.black,
+              color: vocieCheckEnum ? Colors.white : Colors.black,
             ),
           ),
         ),

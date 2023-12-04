@@ -13,7 +13,7 @@ class ArticleModel extends Equatable {
   final String lineTag;
   final String tier;
   final String gameType;
-  final String vocie;
+  final bool vocie;
   final String personel;
 
   static const empty = ArticleModel(
@@ -22,7 +22,7 @@ class ArticleModel extends Equatable {
     lineTag: '',
     tier: '',
     gameType: '',
-    vocie: '',
+    vocie: false,
     personel: '',
   );
 
@@ -71,7 +71,7 @@ class ArticleModel extends Equatable {
       lineTag: map['lineTag'] ?? "",
       tier: map['tier'] ?? "",
       gameType: map['gameType'] ?? "",
-      vocie: map['vocie'] ?? "",
+      vocie: map['vocie'] ?? false,
       personel: map['personel'] ?? "",
     );
   }
@@ -82,7 +82,7 @@ class ArticleModel extends Equatable {
     String? lineTag,
     String? tier,
     String? gameType,
-    String? vocie,
+    bool? vocie,
     String? personel,
   }) {
     return ArticleModel(
