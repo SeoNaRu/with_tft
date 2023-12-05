@@ -22,6 +22,8 @@ class _FindTeamViewState extends State<FindTeamView> {
 
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
+    print(size.width);
     return BlocBuilder<HomeBloc, HomeState>(builder: (context, state) {
       return Expanded(
         child: ListView.builder(
@@ -57,7 +59,7 @@ class _FindTeamViewState extends State<FindTeamView> {
                   child: Row(
                     children: [
                       Container(
-                          width: 150,
+                          width: size.width * 0.3895,
                           height: double.infinity,
                           decoration: BoxDecoration(
                             color: Colors.white,
