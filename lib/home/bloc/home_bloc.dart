@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:with_tft/home/bloc/home_event.dart';
 import 'package:with_tft/home/bloc/home_state.dart';
 import 'package:with_tft/home/model/article_model.dart';
+import 'package:with_tft/home/model/champion_model.dart';
 import 'package:with_tft/home/model/user_profile_model.dart';
 import 'package:with_tft/my/my_env.dart';
 import 'package:with_tft/repository/authentication_repository.dart';
@@ -31,6 +32,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<SaveUserProfile>(_onSaveUserProfile);
     on<SelectedUserVisible>(_onSelectedUserVisible);
     on<GetAllUserList>(_onGetAllUserList);
+    //ChampionList
+    on<GetChampionList>(_onGetChampionList);
   }
   FutureOr<void> _onSelectedCategory(SelectedCategory event, emit) async {
     emit(state.copyWith(status: event.category));
@@ -150,5 +153,29 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         response.map<Profile>((e) => Profile.fromMap(e)).toList();
 
     emit(state.copyWith(userProfileList: users));
+  }
+
+  FutureOr<void> _onGetChampionList(GetChampionList event, emit) async {
+    try {
+      dynamic response = await _authenticationRepository.passGet(
+          "ddragon.leagueoflegends.com",
+          '/cdn/13.23.1/data/ko_KR/tft-champion.json');
+      dynamic tftChampionList = response['data'];
+
+      // 챔피언 정보를 추출하여 ChampionModel 리스트로 변환
+      List<ChampionModel> tftChampion =
+          tftChampionList.entries.map<ChampionModel>((entry) {
+        Map<String, dynamic> championData = entry.value;
+        return ChampionModel.fromMap({
+          'id': entry.key,
+          'name': championData['name'],
+          'tier': championData['tier'],
+        });
+      }).toList();
+
+      emit(state.copyWith(champion: tftChampion));
+    } catch (error) {
+      print('챔피언 리스트를 가져오는 중 오류 발생: $error');
+    }
   }
 }

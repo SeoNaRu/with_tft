@@ -145,3 +145,5 @@ class SaveUserProfile extends HomeEvent {
 }
 
 class GetAllUserList extends HomeEvent {}
+
+class GetChampionList extends HomeEvent {}

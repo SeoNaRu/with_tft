@@ -20,7 +20,8 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     context.read<HomeBloc>()
       ..add(GetArticleList())
-      ..add(GetAllUserList());
+      ..add(GetAllUserList())
+      ..add(GetChampionList());
     return const HomeView();
   }
 }

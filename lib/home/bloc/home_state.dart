@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:with_tft/home/model/article_model.dart';
+import 'package:with_tft/home/model/champion_model.dart';
 import 'package:with_tft/home/model/user_profile_model.dart';
 
 enum HomeCategory { findTeam, findDuo, synergyHelper, profile, writing }
@@ -50,6 +51,7 @@ class HomeState extends Equatable {
   final String userDescription;
   final bool isUserDetailVisible;
   final List<ArticleModel> articles;
+  final List<ChampionModel> champion;
 
   const HomeState({
     required this.status,
@@ -74,6 +76,7 @@ class HomeState extends Equatable {
     required this.userDescription,
     required this.isUserDetailVisible,
     required this.articles,
+    required this.champion,
   });
 
   factory HomeState.init() {
@@ -100,6 +103,7 @@ class HomeState extends Equatable {
       userDescription: '',
       isUserDetailVisible: false,
       articles: [],
+      champion: [],
     );
   }
 
@@ -132,6 +136,7 @@ class HomeState extends Equatable {
         userDescription,
         isUserDetailVisible,
         articles,
+        champion,
       ];
 
   HomeState copyWith({
@@ -157,6 +162,7 @@ class HomeState extends Equatable {
     String? userDescription,
     bool? isUserDetailVisible,
     List<ArticleModel>? articles,
+    List<ChampionModel>? champion,
   }) {
     return HomeState(
       status: status ?? this.status,
@@ -183,6 +189,7 @@ class HomeState extends Equatable {
       userDescription: userDescription ?? this.userDescription,
       isUserDetailVisible: isUserDetailVisible ?? this.isUserDetailVisible,
       articles: articles ?? this.articles,
+      champion: champion ?? this.champion,
     );
   }
 }
