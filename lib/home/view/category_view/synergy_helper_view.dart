@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:with_tft/home/bloc/home_bloc.dart';
+import 'package:with_tft/home/bloc/home_state.dart';
 
 class SynergyHelperView extends StatefulWidget {
   const SynergyHelperView({super.key});
@@ -10,29 +13,60 @@ class SynergyHelperView extends StatefulWidget {
 class _SynergyHelperViewState extends State<SynergyHelperView> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Expanded(
-          child: ListView.builder(
-            itemCount: 2,
-            itemBuilder: (context, index) {
-              return Align(
-                  alignment: Alignment.center,
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          Container(),
-                          Container(),
-                          Container(),
-                        ],
-                      ),
-                    ],
-                  ));
-            },
+    return BlocBuilder<HomeBloc, HomeState>(
+      builder: (context, state) {
+        print('리스트 확인 ${state.champion}');
+        return Center(
+          child: Wrap(
+            direction: Axis.horizontal, // 나열 방향
+            alignment: WrapAlignment.start, // 정렬 방식
+            spacing: 5, // 좌우 간격
+            runSpacing: 5, // 상하 간격
+            children: [
+              Container(
+                padding: const EdgeInsets.all(6),
+                decoration: BoxDecoration(
+                  color: const Color(0xffdddddd),
+                  borderRadius: BorderRadius.circular(6),
+                ),
+                child: Text('#태그1'),
+              ),
+              Container(
+                padding: const EdgeInsets.all(6),
+                decoration: BoxDecoration(
+                  color: const Color(0xffdddddd),
+                  borderRadius: BorderRadius.circular(6),
+                ),
+                child: Text('#태그22'),
+              ),
+              Container(
+                padding: const EdgeInsets.all(6),
+                decoration: BoxDecoration(
+                  color: const Color(0xffdddddd),
+                  borderRadius: BorderRadius.circular(6),
+                ),
+                child: Text('#태그333'),
+              ),
+              Container(
+                padding: const EdgeInsets.all(6),
+                decoration: BoxDecoration(
+                  color: const Color(0xffdddddd),
+                  borderRadius: BorderRadius.circular(6),
+                ),
+                child: Text('#태그4444'),
+              ),
+              Container(
+                padding: const EdgeInsets.all(6),
+                decoration: BoxDecoration(
+                  color: const Color(0xffdddddd),
+                  borderRadius: BorderRadius.circular(6),
+                ),
+                child: Text('#태그55555'),
+              ),
+            ],
           ),
-        )
-      ],
+        );
+      },
     );
   }
 }
