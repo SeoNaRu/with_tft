@@ -24,37 +24,49 @@ class _SynergyHelperViewState extends State<SynergyHelperView> {
             runSpacing: 5, // 상하 간격
             children: [
               Container(
-                padding: const EdgeInsets.all(6),
-                decoration: BoxDecoration(
-                  color: const Color(0xffdddddd),
-                  borderRadius: BorderRadius.circular(6),
-                ),
-                child: Text('#태그1'),
-              ),
+                  padding: const EdgeInsets.all(6),
+                  decoration: BoxDecoration(
+                    color: const Color(0xffdddddd),
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                  child: Container(
+                    width: 200,
+                    height: 100,
+                    child: Text('챔피언1'),
+                  )),
               Container(
-                padding: const EdgeInsets.all(6),
-                decoration: BoxDecoration(
-                  color: const Color(0xffdddddd),
-                  borderRadius: BorderRadius.circular(6),
-                ),
-                child: Text('#태그22'),
-              ),
+                  padding: const EdgeInsets.all(6),
+                  decoration: BoxDecoration(
+                    color: const Color(0xffdddddd),
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                  child: Container(
+                    width: 200,
+                    height: 100,
+                    child: Text('챔피언1'),
+                  )),
               Container(
-                padding: const EdgeInsets.all(6),
-                decoration: BoxDecoration(
-                  color: const Color(0xffdddddd),
-                  borderRadius: BorderRadius.circular(6),
-                ),
-                child: Text('#태그333'),
-              ),
+                  padding: const EdgeInsets.all(6),
+                  decoration: BoxDecoration(
+                    color: const Color(0xffdddddd),
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                  child: Container(
+                    width: 200,
+                    height: 100,
+                    child: Text('챔피언1'),
+                  )),
               Container(
-                padding: const EdgeInsets.all(6),
-                decoration: BoxDecoration(
-                  color: const Color(0xffdddddd),
-                  borderRadius: BorderRadius.circular(6),
-                ),
-                child: Text('#태그4444'),
-              ),
+                  padding: const EdgeInsets.all(6),
+                  decoration: BoxDecoration(
+                    color: const Color(0xffdddddd),
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                  child: Container(
+                    width: 200,
+                    height: 100,
+                    child: Text('챔피언1'),
+                  )),
               Container(
                 padding: const EdgeInsets.all(6),
                 decoration: BoxDecoration(
