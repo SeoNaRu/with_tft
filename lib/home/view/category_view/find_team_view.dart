@@ -23,7 +23,6 @@ class _FindTeamViewState extends State<FindTeamView> {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-    print(size.width);
     return BlocBuilder<HomeBloc, HomeState>(builder: (context, state) {
       return Expanded(
         child: ListView.builder(

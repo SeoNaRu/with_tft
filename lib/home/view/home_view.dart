@@ -112,6 +112,13 @@ class _HomeViewState extends State<HomeView> {
                             ),
                             categoryButton(
                               context,
+                              '조합',
+                              const SelectedCategory(
+                                  category: HomeCategory.synergyHelper),
+                              state.status,
+                            ),
+                            categoryButton(
+                              context,
                               '프로필',
                               const SelectedCategory(
                                   category: HomeCategory.profile),
@@ -124,6 +131,8 @@ class _HomeViewState extends State<HomeView> {
               SizedBox(height: 20),
               if (state.status == HomeCategory.findTeam) const FindTeamView(),
               if (state.status == HomeCategory.findDuo) const FindDuoView(),
+              if (state.status == HomeCategory.synergyHelper)
+                const SynergyHelperView(),
               if (state.status == HomeCategory.profile) const MyProfileView(),
               if (state.status == HomeCategory.writing) const WritingView(),
             ],

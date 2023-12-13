@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:with_tft/home/provider/home_page.dart';
-import 'package:with_tft/home/view/home_view.dart';
 import 'package:with_tft/login/bloc/login_bloc.dart';
 import 'package:with_tft/login/bloc/login_event.dart';
 import 'package:with_tft/login/bloc/login_state.dart';

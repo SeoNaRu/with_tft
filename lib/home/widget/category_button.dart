@@ -14,6 +14,9 @@ Widget categoryButton(BuildContext context, String category, HomeEvent event,
     case '듀오 찾기':
       categoryEnum = HomeCategory.findDuo;
       break;
+    case '조합':
+      categoryEnum = HomeCategory.synergyHelper;
+      break;
     case '프로필':
       categoryEnum = HomeCategory.profile;
       break;

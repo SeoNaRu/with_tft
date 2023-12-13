@@ -7,17 +7,21 @@ import 'package:equatable/equatable.dart';
 class ChampionModel extends Equatable {
   final String id;
   final String name;
+  final String image;
+
   final int tier;
 
   static const empty = ChampionModel(
     id: '',
     name: '',
+    image: '',
     tier: 0,
   );
 
   const ChampionModel({
     required this.id,
     required this.name,
+    required this.image,
     required this.tier,
   });
 
@@ -25,18 +29,20 @@ class ChampionModel extends Equatable {
   List<Object?> get props => [
         id,
         name,
+        image,
         tier,
       ];
 
   @override
   String toString() {
-    return 'ChampionModel{name: $name, tier:$tier,  id:$id}';
+    return 'ChampionModel{name: $name, tier:$tier,  id:$id image:$image}';
   }
 
   Map<String, dynamic> toMap() {
     return {
       'id': id,
       'name': name,
+      'image': image,
       'tier': tier,
     };
   }
@@ -45,6 +51,7 @@ class ChampionModel extends Equatable {
     return ChampionModel(
       id: map['id'] ?? "",
       name: map['name'] ?? "",
+      image: map['image'] ?? "",
       tier: map['tier'] ?? 0,
     );
   }
@@ -52,11 +59,13 @@ class ChampionModel extends Equatable {
   ChampionModel copyWith({
     String? id,
     String? name,
+    String? image,
     int? tier,
   }) {
     return ChampionModel(
       id: id ?? this.id,
       name: name ?? this.name,
+      image: image ?? this.image,
       tier: tier ?? this.tier,
     );
   }

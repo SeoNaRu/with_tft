@@ -113,6 +113,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     dynamic response =
         await _authenticationRepository.testGet(MyEnv.testIp, '/articles');
 
+    print('확인 $response');
+
     List<ArticleModel> articles =
         response.map<ArticleModel>((e) => ArticleModel.fromMap(e)).toList();
 
@@ -162,14 +164,15 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           '/cdn/13.23.1/data/ko_KR/tft-champion.json');
       dynamic tftChampionList = response['data'];
 
-      // 챔피언 정보를 추출하여 ChampionModel 리스트로 변환
       List<ChampionModel> tftChampion =
           tftChampionList.entries.map<ChampionModel>((entry) {
         Map<String, dynamic> championData = entry.value;
+
         return ChampionModel.fromMap({
           'id': entry.key,
           'name': championData['name'],
           'tier': championData['tier'],
+          'image': championData['image']['full'],
         });
       }).toList();
 
