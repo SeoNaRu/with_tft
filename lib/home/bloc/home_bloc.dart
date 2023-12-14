@@ -113,8 +113,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     dynamic response =
         await _authenticationRepository.testGet(MyEnv.testIp, '/articles');
 
-    print('확인 $response');
-
     List<ArticleModel> articles =
         response.map<ArticleModel>((e) => ArticleModel.fromMap(e)).toList();
 
