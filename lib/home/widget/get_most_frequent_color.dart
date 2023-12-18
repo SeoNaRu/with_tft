@@ -18,6 +18,5 @@ Future<Color> getMostFrequentColor(String assetPath) async {
   final int mostFrequentColorValue =
       colorFrequency.entries.reduce((a, b) => a.value > b.value ? a : b).key;
 
-  // ABGR 형식의 색상을 Flutter의 Color 객체로 변환
-  return Color(mostFrequentColorValue | 0xFF000000); // 알파 채널 추가
+  return Color(mostFrequentColorValue | 0xFF000000);
 }
