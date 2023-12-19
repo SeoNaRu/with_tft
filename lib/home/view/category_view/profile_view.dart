@@ -48,9 +48,9 @@ class _MyProfileViewState extends State<MyProfileView> {
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withOpacity(0.8),
-                      spreadRadius: 2, // 그림자 크기
-                      blurRadius: 0, // 블러
-                      offset: Offset(5, 6), // 그림자의 위치 (가로, 세로)
+                      spreadRadius: 2,
+                      blurRadius: 0,
+                      offset: Offset(5, 6),
                     ),
                   ],
                 ),
