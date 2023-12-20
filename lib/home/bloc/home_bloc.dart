@@ -17,6 +17,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       : _authenticationRepository = AuthenticationRepository(),
         super(HomeState.init()) {
     on<SelectedCategory>(_onSelectedCategory);
+    on<SelectedCost>(_onSelectedCost);
     on<SelectedGameType>(_onSelectedGameType);
     on<SelectedVocieCheck>(_onSelectedVocieCheck);
     on<SelectedPersonnelCheck>(_onSelectedPersonnelCheck);
@@ -37,6 +38,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
   FutureOr<void> _onSelectedCategory(SelectedCategory event, emit) async {
     emit(state.copyWith(status: event.category));
+  }
+
+  FutureOr<void> _onSelectedCost(SelectedCost event, emit) async {
+    emit(state.copyWith(championCost: event.championCost));
   }
 
   FutureOr<void> _onSelectedGameType(SelectedGameType event, emit) async {

@@ -18,6 +18,14 @@ class SelectedCategory extends HomeEvent {
   });
 }
 
+class SelectedCost extends HomeEvent {
+  final ChampionCost championCost;
+
+  const SelectedCost({
+    required this.championCost,
+  });
+}
+
 class SelectedGameType extends HomeEvent {
   final GameTypes gameTypesCategory;
   final String stringGameTypesStatus;

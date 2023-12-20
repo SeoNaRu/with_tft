@@ -39,6 +39,7 @@ flutter:
         - asset: fonts/BeaufortforLOL-Heavy.ttf
   assets:
     - assets/tft_champions/
+    - assets/champion_icon/
     - .env
 
 

@@ -24,6 +24,14 @@ enum DuoType {
   studentSeeking,
 }
 
+enum ChampionCost {
+  one,
+  two,
+  three,
+  four,
+  five,
+}
+
 enum PlayTime { morning, lunch, night, weekday, weekend, random }
 
 enum Interest { skillStudy, casualChat, streamer, tournamentWatch }
@@ -48,6 +56,7 @@ class HomeState extends Equatable {
   final PlayTime playTime;
   final String stringPlayTime;
   final Interest interest;
+  final ChampionCost championCost;
   final String userDescription;
   final bool isUserDetailVisible;
   final List<ArticleModel> articles;
@@ -73,6 +82,7 @@ class HomeState extends Equatable {
     required this.playTime,
     required this.stringPlayTime,
     required this.interest,
+    required this.championCost,
     required this.userDescription,
     required this.isUserDetailVisible,
     required this.articles,
@@ -100,6 +110,7 @@ class HomeState extends Equatable {
       playTime: PlayTime.random,
       stringPlayTime: '랜덤',
       interest: Interest.skillStudy,
+      championCost: ChampionCost.one,
       userDescription: '',
       isUserDetailVisible: false,
       articles: [],
@@ -133,6 +144,7 @@ class HomeState extends Equatable {
         playTime,
         stringPlayTime,
         interest,
+        championCost,
         userDescription,
         isUserDetailVisible,
         articles,
@@ -159,6 +171,7 @@ class HomeState extends Equatable {
     PlayTime? playTime,
     String? stringPlayTime,
     Interest? interest,
+    ChampionCost? championCost,
     String? userDescription,
     bool? isUserDetailVisible,
     List<ArticleModel>? articles,
@@ -186,6 +199,7 @@ class HomeState extends Equatable {
       playTime: playTime ?? this.playTime,
       stringPlayTime: stringPlayTime ?? this.stringPlayTime,
       interest: interest ?? this.interest,
+      championCost: championCost ?? this.championCost,
       userDescription: userDescription ?? this.userDescription,
       isUserDetailVisible: isUserDetailVisible ?? this.isUserDetailVisible,
       articles: articles ?? this.articles,
