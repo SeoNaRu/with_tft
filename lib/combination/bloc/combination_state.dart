@@ -1,10 +1,33 @@
-part of 'combination_bloc.dart';
+// part of 'combination_bloc.dart';
 
-sealed class CombinationState extends Equatable {
-  const CombinationState();
-  
-  @override
-  List<Object> get props => [];
-}
 
-final class CombinationInitial extends CombinationState {}
+
+// class CombinationState extends Equatable {
+
+
+//   const CombinationState({
+
+//   });
+
+//   factory CombinationState.init() {
+//     return const CombinationState(
+
+//     );
+//   }
+
+  // @override
+  // String toString() {
+  //   return 'CombinationState{status: $status, user: $user , tier: $tier}';
+  // }
+
+//   @override
+//   List<Object?> get props => [];
+
+//   CombinationState copyWith({
+
+//   }) {
+//     return CombinationState(
+
+//     );
+//   }
+// }

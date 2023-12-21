@@ -51,109 +51,74 @@ class _SynergyHelperViewState extends State<SynergyHelperView> {
               ),
             ],
           ),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  costCheckButton(
-                    context,
-                    '1코',
-                    const SelectedCost(championCost: ChampionCost.one),
-                    state.championCost,
-                  ),
-                  costCheckButton(
-                    context,
-                    '2코',
-                    const SelectedCost(championCost: ChampionCost.two),
-                    state.championCost,
-                  ),
-                  costCheckButton(
-                    context,
-                    '3코',
-                    const SelectedCost(championCost: ChampionCost.three),
-                    state.championCost,
-                  ),
-                  costCheckButton(
-                    context,
-                    '4코',
-                    const SelectedCost(championCost: ChampionCost.four),
-                    state.championCost,
-                  ),
-                  costCheckButton(
-                    context,
-                    '5코',
-                    const SelectedCost(championCost: ChampionCost.five),
-                    state.championCost,
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 50,
-              ),
-              Expanded(
-                child: ListView.builder(
-                  // scrollDirection: Axis.vertical,
-                  itemCount: state.champion.length,
-                  itemBuilder: (context, index) {
-                    final imagePath =
-                        'assets/champion_icon/${state.champion[index].id}.jpeg';
-                    return FutureBuilder<Color>(
-                      future: colorCache.containsKey(imagePath)
-                          ? Future.value(colorCache[imagePath])
-                          : getImagePalette(imagePath).then((color) {
-                              colorCache[imagePath] = color;
-                              return color;
-                            }),
-                      builder: (context, snapshot) {
-                        Color chamColor = snapshot.data ?? Colors.transparent;
-                        return Container(
-                          margin: EdgeInsets.symmetric(horizontal: 20.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                height: 50,
-                                decoration: BoxDecoration(
-                                  color: chamColor.withOpacity(0.6),
-                                  border: Border.all(
-                                    color: Colors.black,
-                                    width: 1.0,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10),
+            child: Column(
+              children: [
+                Expanded(
+                  child: ListView.builder(
+                    // scrollDirection: Axis.vertical,
+                    itemCount: state.champion.length,
+                    itemBuilder: (context, index) {
+                      final imagePath =
+                          'assets/champion_icon/${state.champion[index].id}.jpeg';
+                      return FutureBuilder<Color>(
+                        future: colorCache.containsKey(imagePath)
+                            ? Future.value(colorCache[imagePath])
+                            : getImagePalette(imagePath).then((color) {
+                                colorCache[imagePath] = color;
+                                return color;
+                              }),
+                        builder: (context, snapshot) {
+                          Color chamColor = snapshot.data ?? Colors.transparent;
+                          return Container(
+                            margin: EdgeInsets.symmetric(horizontal: 20.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                    color: chamColor.withOpacity(0.6),
+                                    border: Border.all(
+                                      color: Colors.black,
+                                      width: 1.0,
+                                    ),
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(10.0),
+                                    ),
                                   ),
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(10.0),
-                                  ),
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Row(
-                                    children: [
-                                      Container(
-                                        width: 30,
-                                        height: 30,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          image: DecorationImage(
-                                            image: AssetImage(imagePath),
-                                            fit: BoxFit.cover,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          width: 30,
+                                          height: 30,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            image: DecorationImage(
+                                              image: AssetImage(imagePath),
+                                              fit: BoxFit.cover,
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                      Text(state.champion[index].name)
-                                    ],
+                                        Text(state.champion[index].name)
+                                      ],
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        );
-                      },
-                    );
-                  },
+                              ],
+                            ),
+                          );
+                        },
+                      );
+                    },
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       );

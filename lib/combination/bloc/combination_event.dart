@@ -1,8 +1,8 @@
-part of 'combination_bloc.dart';
+// part of 'combination_bloc.dart';
 
-sealed class CombinationEvent extends Equatable {
-  const CombinationEvent();
+// abstract class CombinationEvent extends Equatable {
+//   const CombinationEvent();
 
-  @override
-  List<Object> get props => [];
-}
+//   @override
+//   List<Object> get props => [];
+// }

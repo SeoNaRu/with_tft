@@ -9,6 +9,8 @@ import 'package:with_tft/home/view/category_view/synergy_helper_view.dart';
 import 'package:with_tft/home/view/category_view/profile_view.dart';
 import 'package:with_tft/home/view/category_view/writing_view.dart';
 import 'package:with_tft/home/widget/category_button.dart';
+import 'package:with_tft/home/widget/combination_button.dart';
+import 'package:with_tft/home/widget/cost_check_button.dart';
 import 'package:with_tft/home/widget/draggable_button.dart';
 import 'package:with_tft/login/bloc/login_bloc.dart';
 
@@ -58,7 +60,6 @@ class _HomeViewState extends State<HomeView> {
                 child: Container(
                   margin: EdgeInsets.symmetric(horizontal: 20.0),
                   width: double.infinity,
-                  height: 50.0,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     border: Border.all(
@@ -83,49 +84,140 @@ class _HomeViewState extends State<HomeView> {
                             context.read<HomeBloc>().add(const SelectedCategory(
                                 category: HomeCategory.findTeam));
                           },
-                          child: Center(
-                              child: Text(
-                            '글쓰기 닫기',
-                            style: const TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                            ),
-                          )),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Center(
+                                child: Text(
+                              '글쓰기 닫기',
+                              style: const TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                              ),
+                            )),
+                          ),
                         )
-                      : Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            categoryButton(
-                              context,
-                              '동료 찾기',
-                              const SelectedCategory(
-                                  category: HomeCategory.findTeam),
-                              state.status,
+                      : state.status == HomeCategory.synergyHelper
+                          ? Column(
+                              children: [
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 5),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: [
+                                      combinationButton(
+                                        context,
+                                        '조합',
+                                        const SelectedCategory(
+                                            category:
+                                                HomeCategory.synergyHelper),
+                                        state.status,
+                                      ),
+                                      combinationButton(
+                                        context,
+                                        '홈',
+                                        const SelectedCategory(
+                                            category: HomeCategory.findTeam),
+                                        state.status,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                  height: 1,
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                      color: Colors.black,
+                                      width: 1.5,
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 5),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: [
+                                      costCheckButton(
+                                        context,
+                                        '1코',
+                                        const SelectedCost(
+                                            championCost: ChampionCost.one),
+                                        state.championCost,
+                                      ),
+                                      costCheckButton(
+                                        context,
+                                        '2코',
+                                        const SelectedCost(
+                                            championCost: ChampionCost.two),
+                                        state.championCost,
+                                      ),
+                                      costCheckButton(
+                                        context,
+                                        '3코',
+                                        const SelectedCost(
+                                            championCost: ChampionCost.three),
+                                        state.championCost,
+                                      ),
+                                      costCheckButton(
+                                        context,
+                                        '4코',
+                                        const SelectedCost(
+                                            championCost: ChampionCost.four),
+                                        state.championCost,
+                                      ),
+                                      costCheckButton(
+                                        context,
+                                        '5코',
+                                        const SelectedCost(
+                                            championCost: ChampionCost.five),
+                                        state.championCost,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            )
+                          : Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  categoryButton(
+                                    context,
+                                    '동료 찾기',
+                                    const SelectedCategory(
+                                        category: HomeCategory.findTeam),
+                                    state.status,
+                                  ),
+                                  categoryButton(
+                                    context,
+                                    '듀오 찾기',
+                                    const SelectedCategory(
+                                        category: HomeCategory.findDuo),
+                                    state.status,
+                                  ),
+                                  categoryButton(
+                                    context,
+                                    '조합',
+                                    const SelectedCategory(
+                                        category: HomeCategory.synergyHelper),
+                                    state.status,
+                                  ),
+                                  categoryButton(
+                                    context,
+                                    '프로필',
+                                    const SelectedCategory(
+                                        category: HomeCategory.profile),
+                                    state.status,
+                                  ),
+                                ],
+                              ),
                             ),
-                            categoryButton(
-                              context,
-                              '듀오 찾기',
-                              const SelectedCategory(
-                                  category: HomeCategory.findDuo),
-                              state.status,
-                            ),
-                            categoryButton(
-                              context,
-                              '조합',
-                              const SelectedCategory(
-                                  category: HomeCategory.synergyHelper),
-                              state.status,
-                            ),
-                            categoryButton(
-                              context,
-                              '프로필',
-                              const SelectedCategory(
-                                  category: HomeCategory.profile),
-                              state.status,
-                            ),
-                          ],
-                        ),
                 ),
               ),
               SizedBox(height: 20),

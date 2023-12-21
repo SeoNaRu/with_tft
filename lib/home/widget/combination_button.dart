@@ -5,24 +5,18 @@ import 'package:with_tft/home/bloc/home_bloc.dart';
 import 'package:with_tft/home/bloc/home_event.dart';
 import 'package:with_tft/home/bloc/home_state.dart';
 
-Widget categoryButton(BuildContext context, String category, HomeEvent event,
+Widget combinationButton(BuildContext context, String category, HomeEvent event,
     HomeCategory currentStatus) {
   HomeCategory categoryEnum;
   switch (category) {
-    case '동료 찾기':
-      categoryEnum = HomeCategory.findTeam;
-      break;
-    case '듀오 찾기':
-      categoryEnum = HomeCategory.findDuo;
-      break;
     case '조합':
       categoryEnum = HomeCategory.synergyHelper;
       break;
-    case '프로필':
-      categoryEnum = HomeCategory.profile;
+    case '홈':
+      categoryEnum = HomeCategory.findTeam;
       break;
     default:
-      categoryEnum = HomeCategory.findTeam;
+      categoryEnum = HomeCategory.synergyHelper;
   }
 
   bool isSelected = categoryEnum == currentStatus;
